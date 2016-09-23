@@ -1,0 +1,13 @@
+<h1 style="text-align: center">Show</h1>
+
+
+ <h2> <%= @am.title%></div> </h2>
+
+ <h3>   <%= @am.body%>  </ h3>
+</br></br>
+
+
+<div style=" display:inline-block"><%= button_to "  Edit post  ", '#', method: "get" %></div>
+<div style=" display:inline-block"><%= button_to "Delete post", '#',  method:"get" %></div>
+
+<h3><%= link_to 'Main page', root_path %></h3>
