@@ -1,13 +1,10 @@
-<h1 style="text-align: center">Show</h1>
+<h1 style="text-align: center"> <b class="blog"><%= @am.title%></b></h1>
+<p class="blog"> <%= @am.body%></p>
 
 
- <h2> <%= @am.title%></div> </h2>
 
- <h3>   <%= @am.body%>  </ h3>
-</br></br>
-
-
+<div>
 <div style=" display:inline-block"><%= button_to "  Edit post  ", '#', method: "get" %></div>
 <div style=" display:inline-block"><%= button_to "Delete post", '#',  method:"get" %></div>
-
-<h3><%= link_to 'Main page', root_path %></h3>
+<div style=" display:inline-block"><%= button_to "  Main page  ", root_path,  method:"get" %></div>
+</div>
