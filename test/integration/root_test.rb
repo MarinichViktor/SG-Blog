@@ -16,7 +16,7 @@ class RootTest < ActiveSupport::TestCase
 
   def test_link_from_main_page_to_post_page
        page.click_link("Ubuntu MATE")
-       assert page.has_content?("Ubuntu MATE")
+       assert page.has_content?("Ubuntu MATE is a free and open-source Linux distribution")
   end
 
   def create_two_posts

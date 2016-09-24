@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
   def show
-     @am = Post.find(params[:id])
+     @post = Post.find(params[:id])
    rescue ActiveRecord::RecordNotFound
    redirect_to "/"
    return
