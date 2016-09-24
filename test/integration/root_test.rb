@@ -16,7 +16,7 @@ class RootTest < ActiveSupport::TestCase
 
   def test_link_from_main_page_to_post_page
        page.click_link("Ubuntu MATE")
-       assert page.has_content?("Post №")
+       assert page.has_content?("Ubuntu MATE")
   end
 
   def create_two_posts

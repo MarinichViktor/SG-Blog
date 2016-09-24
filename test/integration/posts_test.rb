@@ -8,7 +8,7 @@ class PostsTest < ActiveSupport::TestCase
   end
 
   def test_each_post_show_page
-      assert_equal 2, page.all("li.blog").count
+      assert_equal 2, page.all(".blog").count
   end
 
   def test_posts_page_has_only_her_own_title
