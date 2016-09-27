@@ -2,4 +2,8 @@ language: ruby
 sudo: required
 rvm:
    - 2.3.1
+<<<<<<< HEAD
 #script: "bundle exec rake test"
+=======
+
+>>>>>>> 7724581e8f86307ac4502488e1709e4a410ccced
