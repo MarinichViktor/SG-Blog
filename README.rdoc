@@ -1,1 +1,2 @@
+Checking on rails 2.3.1
 {<img src="https://travis-ci.org/MarinichViktor/rails_study_project.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/MarinichViktor/rails_study_project]
