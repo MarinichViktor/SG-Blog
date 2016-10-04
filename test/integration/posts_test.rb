@@ -7,10 +7,6 @@ class PostsTest < ActiveSupport::TestCase
     visit("/posts/1")
   end
 
-  def test_each_post_show_page
-      assert_equal 2, page.all(".blog").count
-  end
-
   def test_posts_page_has_only_her_own_title
       assert page.has_content?(posts[:one][:title])
   end
@@ -28,7 +24,7 @@ class PostsTest < ActiveSupport::TestCase
   end
 
   def test_button_to_main_page
-    page.click_button("  Main page  ")
+    page.click_link("Main page")
     assert page.has_content?("SG Blog")
   end
 

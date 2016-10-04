@@ -4,9 +4,9 @@ class NewDefTest < ActiveSupport::TestCase
   def setup
   end
 
-  def test_button_to_new_page
+  def test_link_to_new_page
       visit '/'
-      page.click_button("New Post")
+      page.click_link("New Post")
       assert page.has_content?("New Post Page")
   end
 
@@ -15,20 +15,15 @@ class NewDefTest < ActiveSupport::TestCase
       assert page.has_content?("Show post page")
   end
 
-  def test_create_new_post_with_invalid_values_and_see_same_page_with_error
-      click_on_create_with_params(params[:invalidtitle], params[:invalidbody])
-      assert page.has_content?("Something goes wrong:")
-  end
-
   def test_create_new_post_with_invalid_values_and_see_error_message
       click_on_create_with_params(params[:invalidtitle], params[:invalidbody])
-      assert page.has_content?("Title is invalid")
+      assert page.has_content?("Title is too short")
   end
 
   def params
       { :validtitle => "Valid val",
-        :validbody => "Valid title with alot letters here",
-        :invalidtitle => "Name10",
+        :validbody => "Valid"*40,
+        :invalidtitle => "Nam",
         :invalidbody => "Notvalid"
       }
   end

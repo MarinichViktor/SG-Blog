@@ -8,13 +8,13 @@
       <% @posts.each do |post| %>
         <tr >
           <td >
-            <a class="" href="<%= post_path(post.id)%>" >  <%=post.title%></a>
+            <a class="post-title" href="<%= post_path(post.id)%>" >  <%=post.title%></a>
          </td>
             <% end %>
         </tr>
         <tr>
           <td class="new-post-link">
-            <a class=" link" href="<%= new_post_path%>" role="button">New Post</a>
+            <a class=" link" id="New Post" href="<%= new_post_path%>" role="button">New Post</a>
           </td>
         </tr>
     </table>
