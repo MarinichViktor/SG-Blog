@@ -1,11 +1,18 @@
-<p>Show post page</p>
-<h1 style="text-align: center"> <b class="blog"><%= @post.title%></b></h1>
-<p class="blog"> <%= @post.body%></p>
 
+  <div class="col-xs-12 first-title">
+    <p>Show post page</p>
+  </div>
 
+  <div class="col-xs-12 title">
+    <%= @post.title%>
+  </div>
 
-<div>
-<div style=" display:inline-block"><%= button_to "  Edit post  ", '#', method: "get" %></div>
-<div style=" display:inline-block"><%= button_to "Delete post", '#',  method:"get" %></div>
-<div style=" display:inline-block"><%= button_to "  Main page  ", root_path,  method:"get" %></div>
-</div>
+  <div class="col-xs-12 body">
+    <p><%= @post.body%></p>
+  </div>
+
+  <div class="col-xs-12 title btns">
+    <a class=" link" href="#" role="button">Edit post</a>
+    <a class=" link" href="#" role="button">Delete post</a>
+    <a class=" link" href="<%= root_path%>" role="button">Main page</a>
+  </div>

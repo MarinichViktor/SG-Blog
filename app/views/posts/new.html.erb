@@ -1,4 +1,7 @@
-<b>New Post Page</b>
+  <div class="col-xs-12 title">
+    <b>New Post Page</b>
+  </div>
+
 
   <% if @post.errors.any? %>
     <p>Something goes wrong:</p>
@@ -8,9 +11,8 @@
       <% end %>
     </ul>
   <% end %>
-
   <%= form_for @post do |f|%>
-    <p><%= f.label "title" %> </br>
+    <p><%= f.label "title" %></br>
     <%= f.text_field :title , :id=>"post_name" %></p>
     <p><%= f.label :body %></br>
     <%= f.text_area :body, :id=>"post_val" %></p>

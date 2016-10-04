@@ -1,9 +1,23 @@
-<h2> SG Blog </h2>
 
-<ul>
-  <% @posts.each do |post| %>
-    <li class="post-title"><%= link_to post.title,  post_path(post.id) %></li>
-  <% end %>
+  <div class="col-xs-12 title">
+      SG Blog
+  </div>
 
-</ul>
-<div style=" display:inline-block"><%= button_to "New Post", new_post_path,  method:"get" %></div>
+  <div class="col-xs-2   posts ">
+    <table  class="table table-striped">
+      <% @posts.each do |post| %>
+        <tr >
+          <td >
+            <a class="" href="<%= post_path(post.id)%>" >  <%=post.title%></a>
+         </td>
+            <% end %>
+        </tr>
+        <tr>
+          <td class="new-post-link">
+            <a class=" link" href="<%= new_post_path%>" role="button">New Post</a>
+          </td>
+        </tr>
+    </table>
+  </div>
+  <div class="col-xs-10 x">
+  </div>
