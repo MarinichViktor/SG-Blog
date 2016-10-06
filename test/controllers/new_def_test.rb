@@ -12,7 +12,7 @@ class NewDefTest < ActiveSupport::TestCase
 
   def test_create_new_post_and_visit_created_page_with_valid_values
       click_on_create_with_params(params[:validtitle], params[:validbody])
-      assert page.has_content?("Show post page")
+      assert page.has_content?(params[:validtitle])
   end
 
   def test_create_new_post_with_invalid_values_and_see_error_message

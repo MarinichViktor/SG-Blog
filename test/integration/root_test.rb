@@ -11,7 +11,7 @@ class RootTest < ActiveSupport::TestCase
   end
 
   def test_visit_home_page_and_see_two_post_titles
-    assert_equal 2, page.all("a.post-title").count
+    assert_equal 2, page.all(".post-link").count
   end
 
   def test_link_from_main_page_to_post_page

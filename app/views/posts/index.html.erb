@@ -1,23 +1,25 @@
 
   <div class="col-xs-12 title">
-      SG Blog
+     <div class="pe"> SG Blog </div>
+    <div class="pe pull-right">   <%= link_to "New Page",new_post_path, class: "btn btn-default", id: "New Post"%>
+</div>
   </div>
+  <div class="col-xs-12 ">
 
-  <div class="col-xs-2   posts ">
-    <table  class="table table-striped">
-      <% @posts.each do |post| %>
-        <tr >
-          <td >
-            <a class="post-title" href="<%= post_path(post.id)%>" >  <%=post.title%></a>
-         </td>
-            <% end %>
-        </tr>
-        <tr>
-          <td class="new-post-link">
-            <a class=" link" id="New Post" href="<%= new_post_path%>" role="button">New Post</a>
-          </td>
-        </tr>
-    </table>
+
+  <div class="list-group">
+      <% @posts.latest_five.each do |post| %>
+
+
+            <%= link_to post_path(post), class: "list-group-item post-link" do %>
+            <h4 class="link_to"><strong><%=post.title%></strong></h4>
+            <p class="link_to">
+            <%=limited_posts_body(post.body)%>
+            </p>
+            <%end%>
+    <% end %>
+
+
+
   </div>
-  <div class="col-xs-10 x">
-  </div>
+</div>

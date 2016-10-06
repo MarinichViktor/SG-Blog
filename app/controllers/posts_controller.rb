@@ -4,6 +4,10 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
   def show
      @post = Post.find(params[:id])
    rescue ActiveRecord::RecordNotFound
@@ -11,10 +15,21 @@ class PostsController < ApplicationController
    return
   end
 
+  def update
+    @post = Post.find(params[:id])
+    @post.update(params.require(:post).permit(:title, :body))
+    render :show
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to root_path
+  end
+
   def new
   @post= Post.new
-
-end
+  end
 
 def create
   @post = Post.new(article_params)
