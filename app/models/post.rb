@@ -5,5 +5,4 @@ class Post < ActiveRecord::Base
  def self.latest_five
    order(created_at: :desc).limit(4)
  end
-
 end

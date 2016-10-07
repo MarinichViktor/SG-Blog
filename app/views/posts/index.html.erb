@@ -1,13 +1,15 @@
 
+<div class="pes"> SG Blog </div>
+
   <div class="col-xs-12 title">
-     <div class="pe"> SG Blog </div>
+     <div class="pes"> SG Blog </div>
     <div class="pe pull-right">   <%= link_to "New Page",new_post_path, class: "btn btn-default", id: "New Post"%>
 </div>
   </div>
   <div class="col-xs-12 ">
 
 
-  <div class="list-group">
+  <div class="list-group ">
       <% @posts.latest_five.each do |post| %>
 
 
