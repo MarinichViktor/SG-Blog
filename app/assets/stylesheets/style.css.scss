@@ -18,16 +18,23 @@
 }
 .center-pos{
   text-align: center;
+  padding-bottom: 5px;
 }
 .show-container{
   background-color: rgb(245, 245, 240);
   font-size: 16px;
   padding: 0px;
 }
-.container {
-  padding:10px;
+.head-style {
+ background-color: #333333;
+ border-radius: 5px;
+ margin-bottom: 5px;
 }
 .block {
   width: 100%;
   overflow: hidden;
+}
+.container {
+  padding-bottom: 10px;
+  
 }

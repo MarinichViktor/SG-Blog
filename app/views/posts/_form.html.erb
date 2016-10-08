@@ -1,3 +1,13 @@
+
+<% if @post.errors.any? %>
+  <p>Something goes wrong:</p>
+  <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @post do |f|%>
   <p>
     <%= f.label "title" %></br>
@@ -12,13 +22,4 @@
     <%= f.file_field :image%>
   </p>
     <%= f.submit name, :id=>"post_send" %>
-<% end %>
-
-<% if @post.errors.any? %>
-  <p>Something goes wrong:</p>
-  <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
 <% end %>
