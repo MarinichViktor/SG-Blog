@@ -1,16 +1,16 @@
-<%= render :partial => "header"%>
 
+  <%= render :partial => "header"%>
 
-<% @posts.latest_five.each do |post| %>
-  <%= link_to post_path(post), class: "list-group-item post-link a" do %>
-    <div class="row  ">
-      <div class="img-container hidden-xs pull-left ">
-        <%= image_tag post.image.small.url, class: "img-rounded" %>
+  <% @posts.latest_five.each do |post| %>
+    <%= link_to post_path(post), class: "list-group-item post-link" do %>
+      <div class="row  ">
+        <div class="img-container hidden-xs pull-left ">
+          <%= image_tag post.image.small.url, class: "img-rounded" %>
+        </div>
+        <div class="col-sm-9 ">
+          <h2 class="color "><%=post.title%> </h2>
+            <%=body_article(post.body)%>
+        </div>
       </div>
-      <div class="col-sm-9 ">
-        <h2 class="color "><%=post.title%> </h2>
-          <%=body_article(post.body)%>
-      </div>
-    </div>
-  <%end%>
-<% end %>
+    <%end%>
+  <% end %>
