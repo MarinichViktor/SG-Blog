@@ -1,13 +1,13 @@
 
 <%= render :partial => "header"%>
-<div class="col-sm-12">
+<div class="block">
 
 
-  <div class="col-sm-9 show-container ">
+  <div class="col-sm-8 show-container  ">
     <h1 class="center-pos"><%= @post.title%></h1>
     <p class="body-text"><%= @post.body%></p>
   </div>
-  <div class="col-sm-3 ">
+  <div class="col-sm-3  ">
     <%= image_tag @post.image.medium.url, class: "img-rounded" %>
   </div>
 </div>

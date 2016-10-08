@@ -31,7 +31,7 @@ def post_titles
     "Brevity","Skorpion", "Battleaxe","Crusader","Torch"
   ]
 end
-4.times do |n|
+5.times do |n|
   Post.create(title: post_titles[n],
    body: post_container[n])
- end 
+ end
