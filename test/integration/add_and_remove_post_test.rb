@@ -6,12 +6,16 @@ class AddAndRemovePostTest < ActiveSupport::TestCase
     @post=Post.create(title: params[:validtitle],body: params[:validbody])
   end
 
-  def test_creating_new_post_with_uploading_image_and_see_page_with_medium_version_of_this_image
+  def test_creating_new_post_with_uploading_image_and_see_post_with_medium_version_of_this_image
       page.fill_in "post_name", :with => @post.title
       page.fill_in "post_val", :with => @post.body
       attach_file("img",File.absolute_path("./app/assets/images/backround.jpeg"))
       page.find('input[id="post_send"]').click
       assert_equal page.find('.img-rounded')['src'], "/uploads/post/image/2/medium_backround.jpeg"
+  end
+  def test_creating_new_post_without_image_and_see_post_with_default_image
+      click_on_create_with_params(params[:validtitle], params[:validbody])
+      assert_equal page.find('.img-rounded')['src'], "/images/fallback/medium_default.png"
   end
 
   def test_click_on_create_with_valid_values_and_see_one_more_post
