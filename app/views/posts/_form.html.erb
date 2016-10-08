@@ -1,11 +1,17 @@
-
-
 <%= form_for @post do |f|%>
-  <p><%= f.label "title" %></br>
-  <%= f.text_field :title , :id=>"post_name",class: "form-control" %></p>
-  <p><%= f.label :body %></br>
-  <%= f.text_area :body, :id=>"post_val", class: "form-control", rows: "4" %></p>
-  <%= f.submit name, :id=>"post_send" %>
+  <p>
+    <%= f.label "title" %></br>
+    <%= f.text_field :title , :id=>"post_name",class: "form-control" %>
+   </p>
+  <p>
+    <%= f.label :body %></br>
+    <%= f.text_area :body, :id=>"post_val", class: "form-control", rows: "4" %>
+  </p>
+  <p>
+    <%= f.label :image %></br>
+    <%= f.file_field :image%>
+  </p>
+    <%= f.submit name, :id=>"post_send" %>
 <% end %>
 
 <% if @post.errors.any? %>
