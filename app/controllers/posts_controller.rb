@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(params.require(:post).permit(:title, :body))
+    @post.update(article_params)
     render :show
   end
 
@@ -43,7 +43,7 @@ end
 
 private
 def article_params
-  params.required(:post).permit(:body,:title)
+  params.required(:post).permit(:body,:title,:image)
 end
 
 end
