@@ -19,7 +19,7 @@
   </p>
   <p>
     <%= f.label :image %></br>
-    <%= f.file_field :image%>
+    <%= f.file_field :image, :id=>"img", class: "form-control"%>
   </p>
     <%= f.submit name, :id=>"post_send" %>
 <% end %>
