@@ -24,8 +24,8 @@ class PostsTest < ActiveSupport::TestCase
   end
 
   def test_button_to_main_page
-    page.click_link("Main page")
-    assert page.has_content?("SG Blog")
+    click_on("Main page")
+    assert page.has_content?("Sg Blog")
   end
 
   def create_two_posts

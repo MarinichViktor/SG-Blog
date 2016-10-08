@@ -7,7 +7,7 @@ class RootTest < ActiveSupport::TestCase
   end
 
   def test_visit_home_page_and_see_blog_title
-    assert page.has_content?("SG Blog")
+    assert page.has_content?("Sg Blog")
   end
 
   def test_visit_home_page_and_see_two_post_titles
