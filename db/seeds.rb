@@ -32,6 +32,9 @@ def post_titles
   ]
 end
 5.times do |n|
-  Post.create(title: post_titles[n],
-   body: post_container[n], image: Rails.root.join("public/post-images/#{n+1}.jpg").open)
+  @post = Post.create(title: post_titles[n],
+  body: post_container[n],
+  image: Rails.root.join("public/post-images/#{n+1}.jpg").open)
+  (rand 7).times { |n| @post.comments.create(text:"Random comment №#{n+1}")}
+
  end
