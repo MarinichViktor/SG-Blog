@@ -1,5 +1,5 @@
-<div class="containet_show">
-<div class="row">
+<div class=" ">
+<div class="row shadow">
   <div class="col-sm-6 show-container  ">
     <h1 class="center-pos"><%= @post.title%></h1>
     <p class="body-text"><%= @post.body%></p>
@@ -8,10 +8,10 @@
     <%= image_tag @post.image.medium.url, class: "img-rounded" %>
   </div>
 </div>
-<div class="comments ">
-  <h3 class="center-pos">Comments</h3>
+<div class="comments shadow">
+  <h3 class="center-pos ">Comments</h3>
 <% @post.comments.each do |comment| %>
-<div class="panel panel-default">
+<div class="panel panel-default shadow">
   <div class="panel-body cr-time">
     Created:   <%= comment.created_at %>
   </div>
@@ -22,7 +22,7 @@
   <% end %>
 </div>
 
-<div class="comments">
+<div class="comments shadow">
   <h3 class="center-pos">Add comment</h3>
     <%= form_for([@post, @post.comments.build]) do |f| %>
       <%= f.text_area :text, :id=>"comment_body", class: "form-control", rows: "2" %>
