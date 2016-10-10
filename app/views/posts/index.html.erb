@@ -1,3 +1,5 @@
+<div class="shadow">
+
 <% @posts.latest_five.each do |post| %>
   <%= link_to post_path(post), class: "list-group-item post-link" do %>
     <div class="row  ">
@@ -11,3 +13,4 @@
     </div>
   <%end%>
 <% end %>
+</div>
