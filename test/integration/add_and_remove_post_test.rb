@@ -3,15 +3,15 @@ require "test_helper"
 class AddAndRemovePostTest < ActiveSupport::TestCase
   def setup
     visit "/posts/new"
-    @post=Post.create(title: params[:validtitle],body: params[:validbody])
   end
 
   def test_creating_new_post_with_uploading_image_and_see_post_with_medium_version_of_this_image
-      page.fill_in "post_name", :with => @post.title
-      page.fill_in "post_val", :with => @post.body
+      page.fill_in "post_name", :with => params[:validtitle]
+      page.fill_in "post_val", :with => params[:validbody]
       attach_file("img",File.absolute_path("./app/assets/images/backround.jpeg"))
       page.find('input[id="post_send"]').click
-      assert_equal page.find('.img-rounded')['src'], "/uploads/post/image/2/medium_backround.jpeg"
+      @post= Post.find_by(title: "#{params[:validtitle]}")
+      assert_equal page.find('.img-rounded')['src'], "/uploads/post/image/#{@post.id}/medium_backround.jpeg"
   end
   def test_creating_new_post_without_image_and_see_post_with_default_image
       click_on_create_with_params(params[:validtitle], params[:validbody])
@@ -35,7 +35,8 @@ def test_creating_new_post_with_invalid_values_and_see_error_message
      assert page.has_content?("Something goes wrong")
   end
   def test_click_on_delete_button_and_see_that_post_was_deleted
-    visit "/posts/#{@post.id}"
+      @post=Post.create(title: params[:validtitle],body: params[:validbody])
+      visit "/posts/#{@post.id}"
       assert_difference  'Post.count', -1 do
       click_on("Delete")
     end
