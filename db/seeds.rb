@@ -33,5 +33,5 @@ def post_titles
 end
 5.times do |n|
   Post.create(title: post_titles[n],
-   body: post_container[n])
+   body: post_container[n], image: Rails.root.join("public/post-images/#{n+1}.jpg").open)
  end
