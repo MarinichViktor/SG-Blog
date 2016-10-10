@@ -43,7 +43,7 @@ end
 
 private
 def article_params
-  params.required(:post).permit(:body,:title,:image)
+  params.required(:post).permit(:body,:title,:image,:remove_image)
 end
 
 end
