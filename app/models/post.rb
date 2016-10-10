@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
  mount_uploader :image, ImageUploader
+ has_many :comments
  validates :title , length: { minimum: 5 , maximum: 30}
  validates :body , length: { minimum: 200}
  def self.latest_five
