@@ -21,5 +21,13 @@
     <%= f.label :image %></br>
     <%= f.file_field :image, :id=>"img", class: "form-control"%>
   </p>
+  <p>
+    <% if @post.image %>
+    <%= image_tag @post.image.small.url, class: "img-rounded" %>
+    <% end %>
+  </p>
+    <%= f.label "Delete current post image" %></br>
+    <%= f.check_box :remove_image %>
+  </p>
     <%= f.submit name, :id=>"post_send" %>
 <% end %>
