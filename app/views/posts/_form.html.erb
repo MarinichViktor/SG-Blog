@@ -1,12 +1,14 @@
 
+<div class="add_paddings shadow">
 <% if @post.errors.any? %>
-  <p>Something goes wrong:</p>
+  Something goes wrong:
   <ul>
     <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <li class="error"><%= msg %></li>
     <% end %>
   </ul>
 <% end %>
+
 
 <%= form_for @post do |f|%>
   <p>
@@ -31,3 +33,4 @@
   </p>
     <%= f.submit name, :id=>"post_send" %>
 <% end %>
+</div>
