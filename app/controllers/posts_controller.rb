@@ -17,8 +17,11 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(article_params)
-    render :show
+    if  @post.update(article_params)
+    render  :show
+    else
+     render "edit"
+    end
   end
 
   def destroy
