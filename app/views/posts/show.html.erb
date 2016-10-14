@@ -1,39 +1,28 @@
 <div class="show-page ">
-<div class="row shadow">
-  <div class="col-sm-6 show-container  ">
-    <h1 class="center-pos"><%= @post.title%></h1>
-    <p class="body-text"><%= @post.body%></p>
+  
+  <div class="row shadow">
+    <div class="col-sm-6 show-container  ">
+      <h1 class="center-pos"><%= @post.title%></h1>
+      <p class="body-text"><%= @post.body%></p>
+    </div>
+    <div class="col-sm-3 ">
+      <%= image_tag @post.image.medium.url, class: "img-rounded" %>
+    </div>
   </div>
-  <div class="col-sm-3 ">
-    <%= image_tag @post.image.medium.url, class: "img-rounded" %>
-  </div>
-</div>
-<div class="comments shadow">
-  <h3 class="center-pos ">Comments</h3>
-<% @post.comments.each do |comment| %>
-<div class="panel panel-default shadow">
-  <div class="panel-body cr-time">
-    Created:   <%= comment.created_at %>
-  </div>
-  <div class="panel-footer">
-      <%= comment.text %>
-  </div>
-</div>
-  <% end %>
-</div>
 
-<div class="comments shadow">
-  <h3 class="center-pos">Add comment</h3>
-    <%= form_for([@post, @post.comments.build]) do |f| %>
-      <%= f.text_area :text, :id=>"comment_body", class: "form-control", rows: "2" %>
-  <p>
-      <%= f.submit "Add comment", :id=>"comment_submit"%>
-  </p>
-    <% end %>
-</div>
-<div class="col-xs-12 title btns">
-  <%=link_to 'Main page', root_path, id: "Main page", class: "btn btn-success "%>
-  <%=link_to 'Edit post', edit_post_path(@post),class: "btn btn-warning "%>
-  <%=link_to 'Delete post', post_path(@post.id),class: "btn btn-danger ", id: "Delete", method: :delete, data: {confirm: "Are you sure?"}%>
-</div>
+  <%= render :partial => "comment"%>
+
+  <div class="comments shadow">
+    <h3 class="center-pos">Add comment</h3>
+      <%= form_for([@post, @post.comments.build]) do |f| %>
+        <%= f.text_area :text, :id=>"comment_body", class: "form-control", rows: "2" %>
+    <p><%= f.submit "Add comment", :id=>"comment_submit"%></p>
+      <% end %>
+  </div>
+
+  <div class="col-xs-12 title btns">
+    <%=link_to 'Main page', root_path, id: "Main page", class: "btn btn-success "%>
+    <%=link_to 'Edit post', edit_post_path(@post),class: "btn btn-warning "%>
+    <%=link_to 'Delete post', post_path(@post.id),class: "btn btn-danger ", id: "Delete", method: :delete, data: {confirm: "Are you sure?"}%>
+  </div>
 </div>

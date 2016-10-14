@@ -1,0 +1,13 @@
+<div class="comments shadow">
+  <h3 class="center-pos ">Comments</h3>
+<% @post.comments.each do |comment| %>
+<div class="panel panel-default shadow">
+  <div class="panel-body cr-time">
+    Created:   <%= comment.created_at %>
+  </div>
+  <div class="panel-footer">
+      <%= comment.text %>
+  </div>
+</div>
+  <% end %>
+</div>
