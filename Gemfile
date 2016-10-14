@@ -13,6 +13,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'carrierwave'
 gem 'mini_magick'
+group :assets do
+  gem 'coffee-rails'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
