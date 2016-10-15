@@ -1,0 +1,10 @@
+if (<%= @comment.save%>){
+$('.commentarys_container').fadeIn("slow").html("<%= j render :partial => './comments/all_comments',  :locals => {:n=> 3 }%>");
+$('.comment-panel').first().prepend("<p style='color:green; text-align:left'>You have add new  comment</p>");
+}
+else {
+  alert("Validation error");
+};
+$(".new_comment").each(function(){
+    this.reset();
+});

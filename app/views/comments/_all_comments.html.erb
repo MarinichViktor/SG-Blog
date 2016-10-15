@@ -1,0 +1,22 @@
+  <h3 class="center-pos ">Comments</h3>
+<% @post.comments.order(created_at: :desc).limit(n).each do |comment| %>
+<div class="comment-panel">
+<div class="panel panel-default shadow">
+  <div class="panel-body cr-time">
+    Created:   <%= comment.created_at %>
+  </div>
+  <div class="panel-footer">
+      <%= comment.text %>
+  </div>
+</div>
+</div>
+  <% end %>
+  <div class="center-pos">
+    <% if (@post.comments.count >=3 ) %>
+    <%=link_to 'Show all', '#',  class: "btn btn-success show_all ", remote: true%>
+    <% elsif (@post.comments.count <1) %>
+     <p>
+      No comments for this post
+     </p>
+    <%end%>
+  </div>
