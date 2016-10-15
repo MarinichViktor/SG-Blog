@@ -31,10 +31,15 @@ def post_titles
     "Brevity","Skorpion", "Battleaxe","Crusader","Torch"
   ]
 end
+Post.delete_all
+Comment.delete_all
+4.times do |n|
+Post.create(title: post_titles[n]+"ww2",body: post_container[n])
+end
 5.times do |n|
   @post = Post.create(title: post_titles[n],
   body: post_container[n],
   image: Rails.root.join("public/post-images/#{n+1}.jpg").open)
-  (rand 7).times { |n| @post.comments.create(text:"Random comment №#{n+1}")}
+  (rand 10).times { |n| @post.comments.create(text:"Random comment №#{n+1}")}
 
  end
