@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 def create
   @post = Post.new(article_params)
  if  @post.save
- render  :show
+ redirect_to  post_path(@post)
  else
   render "new"
  end
