@@ -1,7 +1,14 @@
 .shadow {
   box-shadow: 0 0 10px rgba(0,0,0,0.5)
 }
-
+.show_all {
+  text-align: center;
+}
+.fake-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
 .img-container  {
   display: inline-block;
   padding-left: 10px;}

@@ -8,8 +8,18 @@
       <%= image_tag @post.image.medium.url, class: "img-rounded" %>
     </div>
   </div>
-
+<div class="commentarys_container comments shadow">
   <%= render :partial => "./comments/comment"%>
+  <div class="center-pos">
+    <% if (@post.comments.count >=3 ) %>
+    <%=link_to 'Show all', '#',  class: "btn btn-success show_all ", remote: true%>
+    <% elsif (@post.comments.count <1) %>
+     <p>
+      No comments for this post
+     </p>
+    <%end%>
+  </div>
+</div>
   <%= render :partial => "./comments/new_comment"%>
 
   <div class="col-xs-12 title btns">

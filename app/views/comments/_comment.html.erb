@@ -1,6 +1,5 @@
-<div class="comments shadow">
   <h3 class="center-pos ">Comments</h3>
-<% @post.comments.latest_four.each do |comment| %>
+<% @post.comments.first_two.each do |comment| %>
 <div class="panel panel-default shadow">
   <div class="panel-body cr-time">
     Created:   <%= comment.created_at %>
@@ -10,4 +9,3 @@
   </div>
 </div>
   <% end %>
-</div>
