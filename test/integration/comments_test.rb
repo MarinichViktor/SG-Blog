@@ -13,9 +13,9 @@ class CommentsTest < ActiveSupport::TestCase
    end
   end
 
-  def test_try_to_add_comment_with_less_that_5_characters_and_see_no_changes
+  def test_try_to_add_comment_with_url_see_no_changes
     assert_difference  "Post.find(@post.id).comments.count", 0 do
-    page.fill_in "comment_body", :with => 'Ana'
+    page.fill_in "comment_body", :with => 'https://google.com'
     click_on("comment_submit")
   end
   end
