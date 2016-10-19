@@ -1,3 +1,3 @@
 
 Build Status
- {<img src="https://travis-ci.org/MarinichViktor/SG-Blog.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/MarinichViktor/SG-Blog]
+{<img src="https://travis-ci.org/MarinichViktor/SG-Blog.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/MarinichViktor/SG-Blog]
