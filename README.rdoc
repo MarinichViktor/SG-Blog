@@ -1,3 +1,3 @@
 
-
-Ruby 2.3.1  {<img src="https://travis-ci.org/MarinichViktor/rails_study_project.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/MarinichViktor/rails_study_project]
+Build Status
+ {<img src="https://travis-ci.org/MarinichViktor/SG-Blog.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/MarinichViktor/rails_study_project]
