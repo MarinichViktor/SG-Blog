@@ -1,7 +1,10 @@
 <div class="comments shadow">
   <h3 class="center-pos">Add comment</h3>
     <%= form_for([@post, @post.comments.build], remote: true) do |f| %>
-      <%= f.text_area :text, :id=>"comment_body", class: "form-control",placeholder: "Comment must be longer that 4 and less that 31 characters", rows: "2" %>
+<div class="border">
+      <%= f.text_area :text, :id=>"comment_body", class: "form-control",placeholder: "Type yours comment", rows: "2" %>
+</div>
+  <h5 class="error-container"></h5>
   <p><%= f.submit "Add comment", :id=>"comment_submit"%></p>
     <% end %>
 </div>

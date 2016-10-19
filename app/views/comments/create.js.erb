@@ -1,10 +1,15 @@
+  $('.border').css({'border':'none'});
 if (<%= @comment.save%>){
-$('.commentarys_container').fadeIn("slow").html("<%= j render :partial => './comments/all_comments',  :locals => {:n=> 2 }%>");
-$('.comment-panel').first().prepend("<p style='color:green; text-align:left'>You have add new  comment</p>");
+$('.commentarys_container').html("<%= j render :partial => './comments/all_comments',  :locals => {:n=> 2 }%>");
+$('.error-container').html("<p style='color:green'>You have add new  comment</p>");
+$(".new_comment").each(function(){this.reset();});
 }
 else {
-  alert("Validation error");
-};
-$(".new_comment").each(function(){
-    this.reset();
+  $('.border').css({'border-color':'red',
+"border-style":"solid",
+"border-size":"2px",
+"padding":"5px",
+"border-radius":"7px"
 });
+ $('.error-container').html("<p>Your comment is invalid. Please, change it.</p>");
+};
