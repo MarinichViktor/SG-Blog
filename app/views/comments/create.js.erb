@@ -11,13 +11,5 @@ else {
   $("#comment_body").css({'border-color':'red'});
   $(document).on('blur', 'input[type=text],textarea', function(){$(this).css({'border-color':'red'});});
   $(document).on('focus', 'input[type=text],textarea', function(){$(this).css({'border-color':'red'});});
-
-
-/*  $('.border').css({'border-color':'red',
-"border-style":"solid",
-"border-size":"2px",
-"padding":"5px",
-"border-radius":"7px"
-});*/
- $('.error-container').html("<p>Your comment is invalid. Please, change it.</p>");
+  $('.error-container').html("<p>Your comment is invalid. Please, change it.</p>");
 };
