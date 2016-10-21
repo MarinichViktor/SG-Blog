@@ -3,49 +3,53 @@ require "test_helper"
 class PostsTest < ActiveSupport::TestCase
 
   def setup
-    create_two_posts
-    visit("/posts/1")
+    create_posts
+    @post=Post.first
+    visit("/posts/#{@post.id}")
   end
 
-  def test_posts_page_has_only_her_own_title
-      assert page.has_content?(posts[:one][:title])
+  def test_home_page_with_with_five_posts
+      visit("/")
+      assert page.has_selector?("div.post-intro", :count=> 5)
   end
 
-  def test_posts_page_hasnot_title_from_another_post
-       assert page.has_no_content?(posts[:two][:title])
+  def test_click_new_post_and_see_form_for_new_post
+      click_on("New Post")
+      assert page.has_selector?("form.new_post")
   end
 
-  def test_posts_page_has_only_her_own_body
-       assert page.has_content?(posts[:one][:body])
+  def test_creating_new_post
+    click_on("New Post")
+    assert_difference  "Post.all.count", 1 do
+      page.fill_in "post_name", :with => "a"*10
+      page.fill_in "post_val", :with => "a"*200
+      page.find('input[id="post_send"]').click
+    end
   end
 
-  def test_posts_page_hasnot_body_from_another_post
-       assert page.has_no_content?(posts[:two][:body])
+  def test_post_show_page
+    assert page.has_content? (@post.title)
+    assert page.has_content? (@post.body)
   end
 
-  def test_button_to_main_page
-    click_on("Main page")
-    assert page.has_content?("Sg Blog")
+  def test_updating_new_post
+    click_on("Edit")
+    page.fill_in "post_name", :with => "b"*10
+    page.find('input[id="post_send"]').click
+    assert Post.first.title!= @post.title
+    assert_equal  Post.first.id, @post.id
   end
 
-  def create_two_posts
-    Post.create(posts[:one])
-    Post.create(posts[:two])
+  def test_deleting_post
+    visit("/posts/#{@post.id}")
+    assert_difference  "Post.all.count", -1 do
+      click_on("Delete")
+    end
   end
 
-  def posts
-    {:one => {title: "Ubuntu MATE",
-    body: "Ubuntu MATE is a free and open-source Linux distribution and an official derivative
-    of Ubuntu. Its main differentiation from Ubuntu is that it uses the MATE desktop
-    environment as its default user interface, based on GNOME 2 which was used for Ubuntu
-    versions prior to 11.04, instead of the Unity graphical shell that is the default user
-    interface for the Ubuntu desktop.",
-    id: 1 },
-    :two => {title: "Windows OS",
-    body: "Microsoft Windows (or simply Windows) is a metafamily of graphical operating
-    systems developed, marketed, and sold by Microsoft. It consists of several families
-    of operating systems, each of which cater to a certain sector of the computing industry
-    with the OS typically associated with IBM PC compatible architecture. ",
-    id: 2 }}
+  def create_posts
+    10.times do |x|
+      Post.create(title: "a#{x}"*5, body: "U#{x}"*100)
+    end
   end
 end

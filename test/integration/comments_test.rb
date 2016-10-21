@@ -2,7 +2,7 @@ require "test_helper"
 
 class CommentsTest < ActiveSupport::TestCase
   def setup
-    @post=Post.create(title: 'AnarchyInUk', body: 'Anarchy'*30)
+    @post=Post.create(title: 'Anarchy', body: 'Anarchy'*30)
     visit "/posts/#{@post.id}"
   end
 

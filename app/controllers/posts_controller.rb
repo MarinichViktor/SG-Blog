@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if  @post.update(article_params)
-    render  :show
+    redirect_to  post_path(@post)
     else
      render "edit"
     end
