@@ -10,7 +10,7 @@ require 'database_cleaner'
 
 DatabaseCleaner.strategy = :transaction
 DatabaseCleaner.clean_with(:truncation)
-Capybara.javascript_driver = :selenium
+Capybara.javascript_driver = :webkit
 Capybara.default_max_wait_time = 5
 
 class ActiveSupport::TestCase
