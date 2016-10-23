@@ -5,7 +5,7 @@ require "capybara/rails"
 require "minitest/rails/capybara"
 require 'capybara/webkit'
 
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :selenium
 
 
 class ActiveSupport::TestCase
