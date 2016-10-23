@@ -13,6 +13,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'carrierwave'
 gem 'mini_magick'
+gem "capybara-webkit"
 group :assets do
   gem 'coffee-rails'
 end
@@ -20,11 +21,12 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem "minitest-rails"
 end
 
 group :test do
-  gem "capybara"
+  gem "minitest-rails-capybara"
+  gem 'selenium-webdriver', '~> 2.53'
+  gem 'database_cleaner'
 end
 
 group :development do
