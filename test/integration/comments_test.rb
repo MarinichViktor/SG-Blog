@@ -1,12 +1,14 @@
 require "test_helper"
 
-class CommentsTest < ActiveSupport::TestCase
+class CommentsTest < ActionDispatch::IntegrationTest
   fixtures :posts
+
   def setup
     Capybara.current_driver = Capybara.javascript_driver
-    visit ("/")
+    visit root_path
     first('.post-link').click
   end
+
   def teardown
     super
   end
