@@ -1,13 +1,12 @@
 require "test_helper"
 
-class CommentsTest < IntegrationCase
+class CommentsTest < ActiveSupport::TestCase
+  fixtures :posts
   def setup
-    super
-    Post.create(title: "a1"*5, body: "U1"*100)
+    Capybara.current_driver = Capybara.javascript_driver
     visit ("/")
     first('.post-link').click
   end
-
   def teardown
     super
   end
@@ -35,5 +34,4 @@ class CommentsTest < IntegrationCase
      click_on("comment_submit")
      page.has_content? ("Hello , this is new comment to yours post")
    end
-
 end

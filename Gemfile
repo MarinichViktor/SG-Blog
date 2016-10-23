@@ -13,7 +13,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'carrierwave'
 gem 'mini_magick'
-gem "capybara-webkit"
 group :assets do
   gem 'coffee-rails'
 end
@@ -25,8 +24,8 @@ end
 
 group :test do
   gem "minitest-rails-capybara"
+  gem "capybara-webkit"
   gem 'selenium-webdriver', '~> 2.53'
-  gem 'database_cleaner'
 end
 
 group :development do
