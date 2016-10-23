@@ -10,6 +10,7 @@ Capybara.javascript_driver = :webkit
 
 class ActiveSupport::TestCase
   include Capybara::DSL
+  include Rails.application.routes.url_helpers
   def teardown
     Capybara.use_default_driver
   end
