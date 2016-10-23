@@ -1,23 +1,33 @@
 require "test_helper"
 
-class CommentsTest < ActiveSupport::TestCase
+class CommentsTest < IntegrationCase
   def setup
-    @post=Post.create(title: 'Anarchy', body: 'Anarchy'*30)
-    visit "/posts/#{@post.id}"
+    super
+    Post.create(title: "a1"*5, body: "U1"*100)
+    visit ("/")
+    first('.post-link').click
+  end
+
+  def teardown
+    super
   end
 
   def test_add_comment_to_current_post_and_see_comment_at_current_post_page
-     assert_difference  "Post.find(@post.id).comments.count", 1 do
-     page.fill_in "comment_body", :with => 'Anarchy'
-     click_on("comment_submit")
-   end
+    page.fill_in "comment_body", :with => "Hello , this is new comment to yours post"
+    click_on("comment_submit")
+    assert page.has_content? ("Hello , this is new comment to yours post")
+    assert page.has_content?("You have add new  comment.")
+
   end
 
   def test_try_to_add_comment_with_url_see_no_changes
-    assert_difference  "Post.find(@post.id).comments.count", 0 do
-    page.fill_in "comment_body", :with => 'https://google.com'
-    click_on("comment_submit")
-  end
+    ['https://google.com','x','First post!'].each do |t|
+      page.fill_in "comment_body", :with => t
+      click_on("comment_submit")
+      assert page.has_no_content?(t)
+      assert page.has_content?("Your comment is invalid. Please, change it.")
+
+    end
   end
 
   def test_add_comment_and_see_this_comment_on_post_page

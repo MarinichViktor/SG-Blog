@@ -4,7 +4,7 @@ $(document).on('focus', 'input[type=text],textarea', function(){$(this).css({'bo
 
 if (<%= @comment.save%>){
 $('.commentarys_container').html("<%= j render :partial => './comments/all_comments',  :locals => {:n=> 2 }%>");
-$('.error-container').html("<p style='color:green'>You have add new  comment</p>");
+$('.error-container').html("<p style='color:green'>You have add new  comment.</p>");
 $(".new_comment").each(function(){this.reset();});
 }
 else {
