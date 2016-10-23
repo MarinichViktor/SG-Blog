@@ -4,6 +4,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
   fixtures :posts
 
   def setup
+    super
     Capybara.current_driver = Capybara.javascript_driver
     visit root_path
     first('.post-link').click
@@ -32,8 +33,8 @@ class CommentsTest < ActionDispatch::IntegrationTest
   end
 
   def test_add_comment_and_see_this_comment_on_post_page
-     page.fill_in "comment_body", :with => "Hello , this is new comment to yours post"
+     page.fill_in "comment_body", :with => "aa"
      click_on("comment_submit")
-     page.has_content? ("Hello , this is new comment to yours post")
+     page.has_content? ("aa")
    end
 end

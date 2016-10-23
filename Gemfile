@@ -26,6 +26,8 @@ group :test do
   gem "minitest-rails-capybara"
   gem "capybara-webkit"
   gem 'selenium-webdriver', '~> 2.53'
+  gem 'database_cleaner'
+  gem 'minitest-around'
 end
 
 group :development do
