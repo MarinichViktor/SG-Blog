@@ -45,7 +45,7 @@ class PostsTest < ActiveSupport::TestCase
       click_on("Delete")
     end
   end
-  def test_deleting_all_comments_after_post_deleting
+  def test_deleting_post_with_all_dependences
     ["aa","bb","cc"].each {|t| Post.first.comments.create(text: t)}
     assert_difference  "Comment.all.count", -3 do
       click_on("Delete")
