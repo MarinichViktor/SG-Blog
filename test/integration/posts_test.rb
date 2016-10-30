@@ -41,7 +41,6 @@ class PostsTest < ActiveSupport::TestCase
   end
 
   def test_deleting_post
-    visit("/posts/#{@post.id}")
     assert_difference  "Post.all.count", -1 do
       click_on("Delete")
     end
