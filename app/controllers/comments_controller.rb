@@ -6,4 +6,9 @@ class CommentsController < ApplicationController
     format.js
   end
   end
+
+  def destroy
+    @comment = Post.find(params[:post_id]).comments
+    @comment.where(:id).destroy
+  end
 end
