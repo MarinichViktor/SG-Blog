@@ -3,12 +3,16 @@ class SessionsController < ApplicationController
   end
 
   def create
+    return false unless !user_signed_in?
     user = User.find_by(:email => params[:session][:email])
     if user && user.authenticate(params[:session][:password])
+      if( params[:session][:remember_me]=='1')
+        remember_me(user)
+      end
       sign_in user
       redirect_to root_path
     else
-      redirect_to root_path
+      render 'new'
     end
   end
 
