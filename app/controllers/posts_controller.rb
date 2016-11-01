@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+  before_action :authenticate, only: [:edit , :new]
   def index
     @posts = Post.all
   end

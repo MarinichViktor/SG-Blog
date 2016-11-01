@@ -14,4 +14,14 @@ class ApplicationController < ActionController::Base
   def user_signed_in?
     !current_user.nil?
   end
+
+  def authenticate
+    redirect_to new_session_path unless user_signed_in?
+    flash[:errors]="You need to login"
+  end
+
+  def sign_out
+    session.delete(:user_id)
+    @current_user = nil
+  end
 end
