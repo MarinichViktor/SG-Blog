@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if  @post.update(article_params)
+    if  @post.update(post_params)
     redirect_to  post_path(@post)
     else
      render "edit"
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   end
 
 def create
-  @post = Post.new(article_params)
+  @post = Post.new(post_params)
  if  @post.save
  redirect_to  post_path(@post)
  else
@@ -45,7 +45,7 @@ def create
 end
 
 private
-def article_params
+def post_params
   params.required(:post).permit(:body,:title,:image,:remove_image)
 end
 

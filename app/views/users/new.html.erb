@@ -1,2 +1,35 @@
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
+
+<div class="add_paddings shadow">
+<% if @user.errors.any? %>
+  Something goes wrong:
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li class="error"><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= form_for @user do |f|%>
+  <p>
+    <%= f.label :name %></br>
+    <%= f.text_field :name ,class: "form-control" %>
+   </p>
+  <p>
+    <%= f.label :email %></br>
+    <%= f.text_field  :email, class: "form-control"%>
+  </p>
+  <p>
+    <%= f.label :password %></br>
+    <%= f.password_field :password, class: "form-control"%>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %></br>
+    <%= f.password_field :password_confirmation, class: "form-control"%>
+  </p>
+
+    <%= f.submit %>
+<% end %>
+</div>

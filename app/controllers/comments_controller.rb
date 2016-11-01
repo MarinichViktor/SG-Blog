@@ -11,4 +11,5 @@ class CommentsController < ApplicationController
     @comment = Post.find(params[:post_id]).comments
     @comment.where(:id).destroy
   end
+
 end

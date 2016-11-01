@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  get 'users/new'
-
-  get 'users/create'
-
-  get 'users/show'
+  resources :users
+  resources :sessions
+  resources :posts do
+    resources :comments, only: [:create,:destroy]
+  end
+   root 'posts#index'
 
   #root "posts#index"
   # The priority is based upon order of creation: first created -> highest priority.
@@ -60,10 +61,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-resources :posts do
-  resources :comments, only: [:create,:destroy]
-end
- root 'posts#index'
+
 #get 'posts/:id' => 'posts#show'
   #match 'posts/:id', to: 'posts#show', via: 'get'
 #  get 'posts/:id' => 'posts#show'
