@@ -13,6 +13,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'bcrypt'
 group :assets do
   gem 'coffee-rails'
 end
