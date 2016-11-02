@@ -1,7 +1,22 @@
 class PostsController < ApplicationController
-  before_action :authenticate, only: [:edit , :new]
+  before_action :authenticate, except: [:index, :show]
   def index
     @posts = Post.all
+  end
+
+
+    def new
+    @post= current_user.posts.new
+    end
+
+  def create
+    @post = current_user.posts.new(post_params)
+   if  @post.save
+   redirect_to  post_path(@post)
+   else
+    render "new"
+   end
+  #   render :show
   end
 
   def edit
@@ -11,7 +26,7 @@ class PostsController < ApplicationController
   def show
      @post = Post.find(params[:id])
    rescue ActiveRecord::RecordNotFound
-   redirect_to root_path
+     redirect_to root_path
    return
   end
 
@@ -30,21 +45,9 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
-  def new
-  @post= Post.new
-  end
-
-def create
-  @post = Post.new(post_params)
- if  @post.save
- redirect_to  post_path(@post)
- else
-  render "new"
- end
-#   render :show
-end
 
 private
+
 def post_params
   params.required(:post).permit(:body,:title,:image,:remove_image)
 end

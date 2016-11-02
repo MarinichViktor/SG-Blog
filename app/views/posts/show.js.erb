@@ -1,14 +1,7 @@
 var value = $(".show_all").text()
 if (value =='Show all' ){
-$(".commentarys_container").html(
-  '<h3 class="center-pos ">Comments</h3>'+
-  '<% @post.comments.order(created_at: :desc).limit(-1).each do |comment| %>'+
-    '<div class="panel panel-default shadow">'+
-    '<div class="panel-body cr-time">  Created:   <%= comment.created_at %></div>'+
-    '<div class="panel-footer"> <%= comment.text %></div></div>'+
-  ' <% end %>'+
-  '<div class="center-pos"><a href="#" class="btn btn-success  show_all" data-remote="true">Hide</a>'+
-  '</div>');
+  $(".commentarys_container").html("<%= j render :partial => './comments/all_comments',  :locals => {:n=> -1 }%>");
+$(".commentarys_container").append('<div class="center-pos"><a href="#" class="btn btn-success  show_all" data-remote="true">Hide</a></div>');
 }
 else {
   $(".commentarys_container").html("<%= j render :partial => './comments/all_comments',  :locals => {:n=> 2 }%>"
