@@ -1,8 +1,12 @@
-<div class="panel panel-default">
-  <div class="panel-body cr-time">
-    Created:   <%=time_ago_in_words(comment.created_at) %>
-  </div>
-  <div class="panel-footer">
-      <%= comment.text %>
-  </div>
+
+<div class="media border">
+<div class="media-left">
+  <a href="#">
+    <img class="media-object" src=<%= comment.user.profile_img.thumb.url %> alt="...">
+  </a>
+</div>
+<div class="media-body">
+  <p class="align-center padding-margin-zero border-bot font-10"><%= comment.user.name %> <i><%= time_ago_in_words(comment.created_at) %></i> ago</p>
+  <h4 class="media-heading align-left " ><%= comment.text %></h4>
+</div>
 </div>

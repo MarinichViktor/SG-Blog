@@ -1,24 +1,18 @@
 <div class="container">
-  <div class="col-sm-8 col-sm-offset-2 zen">
-
-<% @posts.latest_five.each do |post| %>
-  <%= link_to post_path(post), class: "list-group-item post-link" do %>
-    <div class="row">
-      <div class="col-sm-3 pad ">
-
-        <%= image_tag post.image.small.url, class: "img-rounded" %>
-
-      </div>
-      <div class="col-sm-8 ">
-
-        <p><%=post.title%> </p>
-          <p class="">
-<%=body_article(post.body)%>
-          </p>
+  <div class="row">
+    <div class="top-margin">
+    <% @posts.latest_nine.each do |post| %>
+      <div class="col-sm-4 col-md-4">
+        <div class="thumbnail">
+          <img src=<%=post.image.medium.url %> alt="...">
+          <div class="caption">
+            <h3 class="align-center"><%=  post.title%></h3>
+            <p><%=  body_article(post.body)%></p>
+            <p class="align-center"><a href=<%=  post_path(post)%>" class="btn btn-success " role="button">Read</a> </p>
+          </div>
         </div>
-
+      </div>
+    <% end %>
     </div>
-  <%end%>
-<% end %>
-</div>
+  </div>
 </div>

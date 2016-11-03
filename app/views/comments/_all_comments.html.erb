@@ -1,21 +1,18 @@
 <h3 class="align-center ">Comments</h3>
 <% @post.comments.order(created_at: :desc).limit(n).each do |comment| %>
-  <div class="panel panel-default">
-    <div class="panel-body padding-none">
-      <div class="row">
-        <div class="col-sm-2  ">
-          <%= image_tag comment.user.profile_img.thumb.url, class: "img-rounded" %>
-        </div>
-        <div class="col-sm-7 ">
-          <p class="comment-text"><b><%= comment.user.name %></b></p> <i><%= time_ago_in_words(comment.created_at) %></i> ago
-        </div>
-      </div>
-    </div>
-    <div class="panel-footer">
-        <%= comment.text %>
-    </div>
+  <div class="media border">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object padding-margin-zero" src=<%= comment.user.profile_img.thumb.url %> alt="...">
+    </a>
   </div>
+  <div class="media-body">
+    <p class="align-center padding-margin-zero border-bot font-10"><%= comment.user.name %> <i><%= time_ago_in_words(comment.created_at) %></i> ago</p>
+    <h4 class="media-heading align-left " ><%= comment.text %></h4>
+  </div>
+</div>
 <% end %>
+
 <div class="align-center">
   <% if (@post.comments.count >=3 ) %>
     <%=link_to 'Show all', '#',  class: "btn btn-success show_all ", remote: true%>

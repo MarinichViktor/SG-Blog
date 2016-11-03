@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
+  before_create :confirmation_token
   has_many :posts
   has_many :comments, dependent: :destroy
   validates :name , length: { minimum: 4 , maximum: 12}
@@ -14,5 +15,15 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
 
   end
-
+  def email_activate
+    self.email_confirm_status = true
+    self.confirm_token = nil
+    save!(:validate => false)
+  end
+  private
+  def confirmation_token
+        if self.confirm_token.blank?
+            self.confirm_token = SecureRandom.urlsafe_base64.to_s
+        end
+      end
 end

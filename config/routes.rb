@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users do
+  member do
+  get :confirm_email
+end
+end
   resource :session
   resources :posts do
     resources :comments, only: [:create,:destroy]

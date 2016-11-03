@@ -14,14 +14,23 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
- body { padding-top: 70px; }
-.padding{
-  margin-right: 10px;
-  display: inline-block;
+ body { padding-top: 50px; }
+ .left-float{
+   float:left;
+ }
+.align-center{
+  text-align: center;
+}
+.align-left{
+  text-align: justify;
+  text-indent: 20px;
 }
 .pad {
   min-width: 170px;
 }
 .zen{
   min-width: 500px;
+}
+.inline-block{
+  display: inline-block;
 }

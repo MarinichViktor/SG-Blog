@@ -33,11 +33,11 @@ def post_titles
 end
 User.delete_all
 Post.delete_all
-
-4.times do |n|
-  User.new(name: "User#{n}",email: "user#{n}@ukr.net",password: "aaaaaa",password_confirmation: "aaaaaa", profile_img: Rails.root.join("public/user-images/#{n+1}.jpg").open ).save
- user = User.find_by(email: "user#{n}@ukr.net")
-    user.posts.create(title: post_titles[n]+"ww2",body: post_container[n], image: Rails.root.join("public/post-images/#{n+1}.jpg").open)
+16.times do |n|
+  x=rand(4)+1
+    User.new(name: "User#{n}",email: "user#{n}@ukr.net",password: "aaaaaa",password_confirmation: "aaaaaa", profile_img: Rails.root.join("public/user-images/#{x}.jpg").open ).save
+    user = User.find_by(email: "user#{n}@ukr.net")
+    user.posts.create(title: post_titles[x-1]+"ww2",body: post_container[x-1], image: Rails.root.join("public/post-images/#{x}.jpg").open)
 end
   Post.all.each do |post|
     User.all.each do |user|

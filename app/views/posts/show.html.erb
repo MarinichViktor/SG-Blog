@@ -1,9 +1,12 @@
+<%=link_to 'Delete post', edit_post_url(@post.title)%>
+
 <div class="row border-top-bot">
 <div class="col-sm-3 hidden-xs profile border">
   <div class="">
     <div class="x"><b><%=  @post.user.name  %></b></div>
     <div><img src=<%= @post.user.profile_img.small.url %> class="" alt="" /></div>
-    <p> Email: <%= @post.user.email  %></p>
+    <div class="x"><b>Profile page</b></div>
+    <div class="x back-col"><b><%= @post.user.id %></b></div>
 
   </div>
 </div>
@@ -11,28 +14,30 @@
 
 <div class="col-sm-8  post-body border">
   <p class="border margin-none date">
-    Posted:  <%=time_ago_in_words( @post.created_at.localtime)%> ago.
-  Posted:  <%= @post.created_at.localtime%> 
+  <%=@post.user.name%>  posted:  <%=time_ago_in_words( @post.created_at.localtime)%> ago.
 </p>
   <h1 class="align-center"><%= @post.title%>  </h1>
   <%= image_tag @post.image.medium.url, class: " rightfloat-img" %>
 <p class="add-margin"><%= @post.body%></p>
 </div>
 </div>
+<div class="row  border-top-bot ">
 
-  <% if user_signed_in? %>
-  <div class="col-sm-8 col-sm-offset-2 color">
+  <div class="col-sm-10 new-comment col-sm-offset-1 ">
+ <div class="col-sm-8 col-sm-offset-2">
+   <% if user_signed_in? %>
+   <%= render :partial => "./comments/new_comment"%>
+   <% else%>
 
-    <%= render :partial => "./comments/new_comment"%>
+   <p class="align-center">Sign in to post yours comment</p>
+   <%end %>
+
+ </div>
 </div>
-  <% else%>
-  <div class="">
-    <p class="align-center">Sign in to post yours comment</p>
-  </div>
-  <%end %>
+</div>
 
-<div class=" col-sm-10 col-sm-offset-1 commentarys_container color1">
-  <%= render :partial => "./comments/all_comments",  :locals => {:n=> 2 }%>
+<div class=" col-sm-10 col-sm-offset-1 commentarys_container padding">
+  <%= render :partial => "./comments/all_comments",  :locals => {:n=> -1 }%>
 </div>
 
   <div class="col-sm-12 title btns">
