@@ -7,29 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container ">
-<%= render :partial => "layouts/header"%>
-<p><%=link_to 'Sign In', new_session_path, class: "btn btn-default "%></p>
-<p><%=link_to 'Sign Up', new_user_path, class: "btn btn-default "%></p>
-<p><%=link_to 'Sign Out', session_path, method: :delete, class: "btn btn-default "%></p>
-<p><%=link_to 'Main page', root_path,  class: "btn btn-default  "%></p>
 
 <% flash.each do |k, v| %>
   <div id="<%= k %>"><%= v %></div>
 <% end %>
-<% if user_signed_in? %>
-<div class="" style="color: green">
-  Signed
-</div>
-<h1><%= current_user.email%></h1>
-<% else %>
-<h1>current_user.email</h1>
-<div class="" style="color: red">
-  UnSigned
-</div>
-<% end %>
+<%= render :partial => "layouts/header"%>
+
+
 <%= yield %>
+
+
 <%= render :partial => "layouts/footer"%>
-</div>
+
 </body>
 </html>

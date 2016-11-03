@@ -10,7 +10,18 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require style
+ *=require style
  */
  @import "bootstrap-sprockets";
- @import "bootstrap"
+ @import "bootstrap";
+ body { padding-top: 70px; }
+.padding{
+  margin-right: 10px;
+  display: inline-block;
+}
+.pad {
+  min-width: 170px;
+}
+.zen{
+  min-width: 500px;
+}

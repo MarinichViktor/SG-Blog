@@ -1,25 +1,41 @@
-  <div class="col-sm-12 ">
-    <div class="col-sm-12 ">
-      <h1 class="center-pos"><%= @post.title%></h1>
-
-    <%= image_tag @post.image.medium.url, class: "img-rounded" %>
-      </div>
+<div class="row border-top-bot">
+<div class="col-sm-3 hidden-xs profile border">
+  <div class="">
+    <div class="x"><b><%=  @post.user.name  %></b></div>
+    <div><img src=<%= @post.user.profile_img.small.url %> class="" alt="" /></div>
+    <p> Email: <%= @post.user.email  %></p>
 
   </div>
-
-    <div class="col-sm-12 show-container  ">
-      <p class="body-text"><%= @post.body%></p>
-    </div>
-
-
-  <%= render :partial => "./comments/new_comment"%>
-
-<div class="commentarys_container comments shadow">
-  <%= render :partial => "./comments/all_comments",  :locals => {:n=> 2 }%>
-
 </div>
 
-  <div class="col-xs-12 title btns">
+
+<div class="col-sm-8  post-body border">
+  <p class="border margin-none date">
+    Posted:  <%=time_ago_in_words( @post.created_at.localtime)%> ago.
+  Posted:  <%= @post.created_at.localtime%> 
+</p>
+  <h1 class="align-center"><%= @post.title%>  </h1>
+  <%= image_tag @post.image.medium.url, class: " rightfloat-img" %>
+<p class="add-margin"><%= @post.body%></p>
+</div>
+</div>
+
+  <% if user_signed_in? %>
+  <div class="col-sm-8 col-sm-offset-2 color">
+
+    <%= render :partial => "./comments/new_comment"%>
+</div>
+  <% else%>
+  <div class="">
+    <p class="align-center">Sign in to post yours comment</p>
+  </div>
+  <%end %>
+
+<div class=" col-sm-10 col-sm-offset-1 commentarys_container color1">
+  <%= render :partial => "./comments/all_comments",  :locals => {:n=> 2 }%>
+</div>
+
+  <div class="col-sm-12 title btns">
     <%=link_to 'Main page', root_path, id: "Main page", class: "btn btn-success "%>
  <%if current_user == @post.user %>
     <%=link_to 'Edit post', edit_post_path(@post),class: "btn btn-warning ",id: "Edit"%>

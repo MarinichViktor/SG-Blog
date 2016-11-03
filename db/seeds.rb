@@ -31,15 +31,16 @@ def post_titles
     "Brevity","Skorpion", "Battleaxe","Crusader","Torch"
   ]
 end
+User.delete_all
 Post.delete_all
-Comment.delete_all
-4.times do |n|
-Post.create(title: post_titles[n]+"ww2",body: post_container[n])
-end
-5.times do |n|
-  @post = Post.create(title: post_titles[n],
-  body: post_container[n],
-  image: Rails.root.join("public/post-images/#{n+1}.jpg").open)
-  (rand 10).times { |n| @post.comments.create(text:"Random comment №#{n+1}")}
 
- end
+4.times do |n|
+  User.new(name: "User#{n}",email: "user#{n}@ukr.net",password: "aaaaaa",password_confirmation: "aaaaaa", profile_img: Rails.root.join("public/user-images/#{n+1}.jpg").open ).save
+ user = User.find_by(email: "user#{n}@ukr.net")
+    user.posts.create(title: post_titles[n]+"ww2",body: post_container[n], image: Rails.root.join("public/post-images/#{n+1}.jpg").open)
+end
+  Post.all.each do |post|
+    User.all.each do |user|
+      comment = post.comments.create(text:"Hello from #{user.name}",user_id: user.id)
+    end
+  end

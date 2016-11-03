@@ -1,18 +1,23 @@
-  <h3 class="center-pos ">Comments</h3>
+<h3 class="align-center ">Comments</h3>
 <% @post.comments.order(created_at: :desc).limit(n).each do |comment| %>
-<div class="comment-panel">
-<div class="panel panel-default shadow">
-  <div class="panel-body cr-time">
-    Created:   <%= comment.created_at %>
+  <div class="panel panel-default">
+    <div class="panel-body padding-none">
+      <div class="row">
+        <div class="col-sm-2  ">
+          <%= image_tag comment.user.profile_img.thumb.url, class: "img-rounded" %>
+        </div>
+        <div class="col-sm-7 ">
+          <p class="comment-text"><b><%= comment.user.name %></b></p> <i><%= time_ago_in_words(comment.created_at) %></i> ago
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+        <%= comment.text %>
+    </div>
   </div>
-  <div class="panel-footer">
-      <%= comment.text %>
-  </div>
-</div>
-</div>
-  <% end %>
-  <div class="center-pos">
-    <% if (@post.comments.count >=3 ) %>
+<% end %>
+<div class="align-center">
+  <% if (@post.comments.count >=3 ) %>
     <%=link_to 'Show all', '#',  class: "btn btn-success show_all ", remote: true%>
     <% elsif (@post.comments.count <1) %>
      <p>

@@ -1,15 +1,24 @@
-<div class="shadow">
+<div class="container">
+  <div class="col-sm-8 col-sm-offset-2 zen">
+
 <% @posts.latest_five.each do |post| %>
   <%= link_to post_path(post), class: "list-group-item post-link" do %>
-    <div class="row  post-intro">
-      <div class="img-container hidden-xs pull-left ">
+    <div class="row">
+      <div class="col-sm-3 pad ">
+
         <%= image_tag post.image.small.url, class: "img-rounded" %>
+
       </div>
-      <div class="col-sm-9 ">
-        <h2 class="color "><%=post.title%> </h2>
-          <%=body_article(post.body)%>
-      </div>
+      <div class="col-sm-8 ">
+
+        <p><%=post.title%> </p>
+          <p class="">
+<%=body_article(post.body)%>
+          </p>
+        </div>
+
     </div>
   <%end%>
 <% end %>
+</div>
 </div>

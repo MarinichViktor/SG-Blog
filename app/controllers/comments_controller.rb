@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(params.require(:comment).permit(:text))
+    @comment = @post.comments.new(params.require(:comment).permit(:text,:user_id))
+    @comment.user_id=current_user.id
+    @comment.save
   respond_to  do |format|
     format.js
   end
