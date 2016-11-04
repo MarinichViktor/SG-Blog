@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103211624) do
+ActiveRecord::Schema.define(version: 20161104122402) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "text"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20161103211624) do
     t.boolean  "email_confirm_status", default: false
     t.string   "confirm_token"
     t.string   "reset_token"
+    t.datetime "token_created"
   end
 
 end

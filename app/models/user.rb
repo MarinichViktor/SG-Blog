@@ -21,6 +21,20 @@ class User < ActiveRecord::Base
     self.confirm_token = nil
     save!(:validate => false)
   end
+  def generate_reset_token
+    self.reset_token = User.secure_random_str
+    self.token_created =  Time.now
+    save!(:validate => false)
+
+  end
+  def is_reset_token?
+    if ((Time.now-self.token_created)/60).round >120
+      self.update_attribute(:reset_token,nil)
+      false
+    else
+      true
+    end
+  end
   private
   def confirmation_token
     if self.confirm_token.blank?

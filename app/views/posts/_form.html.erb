@@ -26,11 +26,12 @@
   <p>
     <% if @post.image %>
     <%= image_tag @post.image.small.url, class: "img-rounded" %>
-    <% end %>
   </p>
     <%= f.label "Delete current post image" %></br>
     <%= f.check_box :remove_image %>
   </p>
+  <% end %>
+  
     <%= f.submit name, :id=>"post_send" %>
 <% end %>
 </div>

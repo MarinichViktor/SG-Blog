@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def search
    if @user = User.find_by(email: params[:email])
-     @user.update_attribute(:reset_token, User.secure_random_str)
+     @user.generate_reset_token
      UserMailer.password_reset(@user).deliver
      @user.update_attribute(:reset_token, User.bcrypt_str(@user.reset_token,1))
      flash[:success]="Email with instructions to reset yours password was sended "
@@ -28,7 +28,6 @@ class UsersController < ApplicationController
 
    else
      flash.now[:danger]="Error"
-
      render 'email_find'
    end
   end
@@ -67,6 +66,10 @@ end
  end
   def password_reset
     @user = User.find_by(email: params[:email])
+  if !@user.is_reset_token?
+    flash[:danger]="Token is not avaliable enymore "
+    redirect_to root_path
+  else
     if BCrypt::Password.new(@user.reset_token).is_password?(params[:id])
      flash.now[:success]="edit"
       render 'password_reset'
@@ -74,6 +77,7 @@ end
       flash[:danger]="Error "
       redirect_to root_path
     end
+  end
   end
 
   def confirm_email
@@ -94,6 +98,6 @@ end
   end
 
   def user_params
-    params.required(:user).permit(:name,:email,:profile_img, :password, :password_confirmation)
+    params.required(:user).permit(:name,:email,:profile_img, :password, :password_confirmation, :remove_profile_img)
   end
 end

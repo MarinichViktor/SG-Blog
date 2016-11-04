@@ -11,7 +11,7 @@
 
 <%= render :partial => "layouts/header"%>
 <% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <div class="align-center alert alert-<%= message_type %>"><%= message %></div>
 <% end %>
 <%= yield %>
 
