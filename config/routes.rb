@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :users do
+resources :users do
+  post :search,  :on => :collection
+  get :email_find,  :on => :collection
   member do
   get :confirm_email
+  get :password_reset
 end
 end
   resource :session

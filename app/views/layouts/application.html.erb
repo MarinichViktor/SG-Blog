@@ -8,12 +8,11 @@
 </head>
 <body>
 
-<% flash.each do |k, v| %>
-  <div id="<%= k %>"><%= v %></div>
-<% end %>
+
 <%= render :partial => "layouts/header"%>
-
-
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
 <%= yield %>
 
 

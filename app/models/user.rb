@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include ApplicationHelper
   before_save { self.email = email.downcase }
   before_create :confirmation_token
   has_many :posts
@@ -22,8 +23,9 @@ class User < ActiveRecord::Base
   end
   private
   def confirmation_token
-        if self.confirm_token.blank?
-            self.confirm_token = SecureRandom.urlsafe_base64.to_s
-        end
-      end
+    if self.confirm_token.blank?
+      self.confirm_token = secure_random_str
+    end
+  end
+
 end
