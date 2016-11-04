@@ -16,17 +16,12 @@
     <%= f.label :profile_img %></br>
     <%= f.file_field :profile_img, :id=>"img", class: "form-control"%>
   </p>
-  <p>
-    <%= f.label :password %></br>
-    <%= f.password_field :password, class: "form-control"%>
-  </p>
-  <p>
-    <%= f.label :password_confirmation %></br>
-    <%= f.password_field :password_confirmation, class: "form-control"%>
-  </p>
+<%= render :partial => 'password', :locals => { :f => f} %>
+
    <p class="align-center">
     <%= f.submit "Edit", class: "btn btn-primary " %>
     </p>
 <% end %>
+
 </div>
 </div>

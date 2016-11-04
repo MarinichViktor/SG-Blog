@@ -19,16 +19,17 @@ class UsersController < ApplicationController
 
   def search
    if @user = User.find_by(email: params[:email])
-     @user.update_attribute(:reset_token, SecureRandom.urlsafe_base64.to_s)
+     @user.update_attribute(:reset_token, User.secure_random_str)
      UserMailer.password_reset(@user).deliver
-     @user.update_attribute(:reset_token, bcrypt_str(@user.reset_token))
+     @user.update_attribute(:reset_token, User.bcrypt_str(@user.reset_token,1))
      flash[:success]="Email with instructions to reset yours password was sended "
      redirect_to root_path
      #@user.update_attribute(:reset_token,bcrypt_str(@user.reset_token))
 
    else
+     flash.now[:danger]="Error"
+
      render 'email_find'
-     flash[:error]="Error"
    end
   end
  def email_find
@@ -40,19 +41,35 @@ class UsersController < ApplicationController
 
 
  def update
+   prev = Rails.application.routes.recognize_path(request.referrer)
    @user = User.find(params[:id])
-   if  @user.update_attributes(user_params)
-   redirect_to  user_path(@user)
+   if prev[:action]== 'password_reset'
+     if  @user.update_attributes(user_params)
+     redirect_to  user_path(@user)
+     else
+       flash.now[:danger]="Error "
+      render "edit"
+     end
    else
-     flash[:danger]="Error "
+  if BCrypt::Password.new(@user.password_digest).is_password?(params[:password])
+     if  @user.update_attributes(user_params)
+     redirect_to  user_path(@user)
+     else
+       flash.now[:danger]="Error "
+       render "edit"
+     end
 
-    render "edit"
+   else
+     flash.now[:danger]="Error "
+     render 'edit'
+end
    end
  end
   def password_reset
     @user = User.find_by(email: params[:email])
     if BCrypt::Password.new(@user.reset_token).is_password?(params[:id])
-      redirect_to edit_user_path(@user)
+     flash.now[:success]="edit"
+      render 'password_reset'
     else
       flash[:danger]="Error "
       redirect_to root_path

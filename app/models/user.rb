@@ -28,4 +28,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.secure_random_str
+    SecureRandom.urlsafe_base64.to_s
+  end
+
+  def self.bcrypt_str(string,cost=10)
+    BCrypt::Password.create(string,cost: cost)
+  end
+
 end
