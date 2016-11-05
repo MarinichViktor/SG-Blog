@@ -3,8 +3,8 @@
 
 one:
   text: MyString
-  post: 
+  post: one
 
 two:
   text: MyString
-  post: 
+  post: two

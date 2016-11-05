@@ -17,6 +17,8 @@ include Rails.application.routes.url_helpers
 class ActiveSupport::TestCase
   include Capybara::DSL
 
+
+
 end
 class   ActionDispatch::IntegrationTest < ActiveSupport::TestCase
   def setup
@@ -26,6 +28,8 @@ class   ActionDispatch::IntegrationTest < ActiveSupport::TestCase
     Capybara.use_default_driver
   #  DatabaseCleaner.clean
   end
+
+end
 
   module  Authorization
     def log_out
@@ -42,4 +46,3 @@ class   ActionDispatch::IntegrationTest < ActiveSupport::TestCase
       page.find('input[id="login"]').click
     end
   end
-end
