@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :authenticate, only: [:destroy]
+# before_action :authenticate, only: [:destroy]
 
   def new
     if user_signed_in?
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       end
       sign_in user
       flash[:success]="You loged  in system."
-      redirect_to root_path
+      redirect_to user_path(user)
     else
       flash.now[:danger]="Invalid email/password"
       render 'new'

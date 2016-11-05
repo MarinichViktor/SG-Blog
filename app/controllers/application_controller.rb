@@ -27,12 +27,12 @@ class ApplicationController < ActionController::Base
     user == current_user
   end
 
-  #def authenticate
-  #  unless user_signed_in?
-  #    redirect_to new_session_path
-  #    flash[:danger]="You need to login."
-  #  end
-  #end
+  def authenticate
+    unless user_signed_in?
+      redirect_to new_session_path
+      flash[:danger]="You need to login."
+    end
+  end
 
   def sign_out
     return false unless user_signed_in?

@@ -5,19 +5,17 @@ class NewTest < ActionDispatch::IntegrationTest
   #include Authorization
 
   def setup
-    @user= users(:user1)
+    @user= users(:user2)
 
   end
 
 
 test "login with valid information" do
-  x = @user.mail
 
-  get new_session_path
-  post session_path, params: { session: { email:  @user.email,
+  post session_path,  session: { email:  @user.email,
                                         password: 'password'
-                                        } }
-  assert_redirected_to @user
+                                        }
+  assert page.has_content?("You loged  in system.")
  end
 
  end

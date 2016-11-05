@@ -16,10 +16,15 @@ include Rails.application.routes.url_helpers
 
 class ActiveSupport::TestCase
   include Capybara::DSL
-
-
-
+  
+  def login(user)
+      old_controller = @controller
+      @controller = SessionsController.new
+      post :create, session: { email:  user.email, password: 'password' }
+      @controller = old_controller
+  end
 end
+
 class   ActionDispatch::IntegrationTest < ActiveSupport::TestCase
   def setup
     #DatabaseCleaner.start

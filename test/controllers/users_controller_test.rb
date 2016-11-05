@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PostsControllerTest < ActionController::TestCase
+class UsersControllerTest < ActionController::TestCase
 fixtures :users,:posts
 
   def  setup
