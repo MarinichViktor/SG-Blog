@@ -33,6 +33,7 @@ Rails.application.configure do
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
+  config.action_mailer.default_url_options = { :host => "app/views/user_mailer/registration_confirmation.html.erb" }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
