@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104122402) do
+ActiveRecord::Schema.define(version: 20161104142256) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "text"
@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(version: 20161104122402) do
     t.string   "confirm_token"
     t.string   "reset_token"
     t.datetime "token_created"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "city"
   end
 
 end

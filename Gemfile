@@ -14,6 +14,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'bcrypt'
+gem 'geocoder'
+gem 'gmaps4rails'
 group :assets do
   gem 'coffee-rails'
 end

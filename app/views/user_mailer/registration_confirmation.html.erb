@@ -1,5 +1,5 @@
-Hi <%= @user.name %>,
+<h2>Hi <%= @user.name %>,</h2>
 
-Thanks for registering! To confirm your registration click the URL below.
+<h3>Thanks for registrating! To confirm your registration click the URL below.</h3>
 
-<%= link_to 'Activate', confirm_email_user_url(@user.confirm_token) %>
+<a href=<%= confirm_email_user_url(@user.confirm_token)%>>Activate </a>

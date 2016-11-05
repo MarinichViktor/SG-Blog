@@ -12,12 +12,13 @@ DatabaseCleaner.strategy = :transaction
 DatabaseCleaner.clean_with(:truncation)
 Capybara.javascript_driver = :webkit
 Capybara.default_max_wait_time = 5
+include Rails.application.routes.url_helpers
 
 class ActiveSupport::TestCase
   include Capybara::DSL
+  
 end
 class   ActionDispatch::IntegrationTest < ActiveSupport::TestCase
-  include Rails.application.routes.url_helpers
   def setup
     DatabaseCleaner.start
   end

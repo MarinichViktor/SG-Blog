@@ -5,17 +5,17 @@
     <%= form_for(:session, url: session_path) do |f| %>
 
       <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.email_field :email, class: 'form-control ', id: 'email'%>
 
       <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.password_field :password, class: 'form-control ', id: 'password'%>
 
       <%= f.label :remember_me, class: "checkbox inline" do %>
       <%= f.check_box :remember_me %>
     <span>Remember me on this computer</span>
   <% end %>
   <p class="align-center">
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <%= f.submit "Log in", class: "btn btn-primary ", id: 'login'%>
   </p>
     <% end %>
 

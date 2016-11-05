@@ -31,11 +31,13 @@ def post_titles
     "Brevity","Skorpion", "Battleaxe","Crusader","Torch"
   ]
 end
+cities = ["odessa ukraine","kyiv ukraine","lviv ukraine","minsk belorussia","moscow russia","omsk russia","berlin german","london uk",'sidney',"warsaw","tbilisi georgia","madrid spain"]
 User.delete_all
 Post.delete_all
 16.times do |n|
+  z=rand(12)
   x=rand(4)+1
-    User.new(name: "User#{n}",email: "user#{n}@ukr.net",password: "aaaaaa",password_confirmation: "aaaaaa", profile_img: Rails.root.join("public/user-images/#{x}.jpg").open ).save
+    User.new(name: "User#{n}",email: "user#{n}@ukr.net",city: cities[z],password: "aaaaaa",password_confirmation: "aaaaaa", profile_img: Rails.root.join("public/user-images/#{x}.jpg").open ).save
     user = User.find_by(email: "user#{n}@ukr.net")
     user.posts.create(title: post_titles[x-1]+"ww2",body: post_container[x-1], image: Rails.root.join("public/post-images/#{x}.jpg").open)
 end

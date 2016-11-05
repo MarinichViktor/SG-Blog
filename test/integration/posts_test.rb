@@ -1,25 +1,22 @@
 require "test_helper"
 
-class PostsTest < ActiveSupport::TestCase
+class PostsTest < ActionDispatch::IntegrationTest
+fixtures :users
 
   def setup
     create_posts
     @post=Post.first
-    visit("/posts/#{@post.id}")
+    @user= users(:user1)
+    log_in
   end
 
   def test_home_page_with_with_five_posts
-      visit("/")
-      assert page.has_selector?("div.post-intro", :count=> 5)
-  end
-
-  def test_click_new_post_and_see_form_for_new_post
-      click_on("New Post")
-      assert page.has_selector?("form.new_post")
+    visit("/")
+    assert page.has_selector?("div.thumbnail", count: 9)
   end
 
   def test_creating_new_post
-    click_on("New Post")
+    visit new_post_path
     assert_difference  "Post.all.count", 1 do
       page.fill_in "post_name", :with => "a"*10
       page.fill_in "post_val", :with => "a"*200
@@ -28,33 +25,43 @@ class PostsTest < ActiveSupport::TestCase
   end
 
   def test_post_show_page
+    visit post_path(@post)
     assert page.has_content? (@post.title)
     assert page.has_content? (@post.body)
   end
 
-  def test_updating_new_post
-    click_on("Edit")
+  def test_edit_post
+    visit edit_post_path(Post.last)
     page.fill_in "post_name", :with => "b"*10
     page.find('input[id="post_send"]').click
-    assert Post.first.title!= @post.title
+    assert Post.last.title!= @post.title
     assert_equal  Post.first.id, @post.id
   end
 
   def test_deleting_post
+    @user.posts.create(title: "a"*10, body:"a"*200)
+    visit post_path(@user.posts.last)
     assert_difference  "Post.all.count", -1 do
       click_on("Delete")
     end
   end
-  def test_deleting_post_with_all_dependences
-    ["aa","bb","cc"].each {|t| Post.first.comments.create(text: t)}
-    assert_difference  "Comment.all.count", -3 do
-      click_on("Delete")
-    end
+
+  def log_in
+    visit new_session_path
+    return true if page.has_content? ('You already loged in system.')
+    page.fill_in "email", :with => @user.email
+    page.fill_in "password", :with => "password"
+    page.find('input[id="login"]').click
+    assert page.has_content?(@user.name)
   end
 
+
   def create_posts
+    cities = ["odessa ukraine","kyiv ukraine","lviv ukraine","minsk belorussia","moscow russia","omsk russia","berlin german","london uk",'sidney',"warsaw","tbilisi georgia","madrid spain"]
     10.times do |x|
-      Post.create(title: "a#{x}"*5, body: "U#{x}"*100)
+      User.new(name: "User#{x}",email: "user#{x}@ukr.net",city: "london",password: "aaaaaa",password_confirmation: "aaaaaa" ).save
+      user= User.last
+      user.posts.create(title: "a#{x}"*5, body: "U#{x}"*100)
     end
   end
 end

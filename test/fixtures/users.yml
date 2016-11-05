@@ -1,13 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
-  profile_img: MyString
-  password_diggest: MyString
-
-two:
-  name: MyString
-  email: MyString
-  profile_img: MyString
-  password_diggest: MyString
+<% 20.times do |n| %>
+user<%= n %>:
+  name: <%= "user№#{n}" %>
+  email: <%= "user№#{n}@ukr.net" %>
+  city: "london uk "
+  password_digest: <%= User.bcrypt_str("password") %>
+<% end %>

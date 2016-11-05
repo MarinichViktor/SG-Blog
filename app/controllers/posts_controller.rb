@@ -4,19 +4,19 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-
-    def new
+  def new
     @post= current_user.posts.new
-    end
+  end
 
   def create
     @post = current_user.posts.new(post_params)
-   if  @post.save
-   redirect_to  post_path(@post)
-   else
-    render "new"
-   end
-  #   render :show
+    if  @post.save
+      flash[:success] = "You have added new post."
+      redirect_to  post_path(@post)
+    else
+     flash[:danger] = "There was an error during adding new post."
+     render "new"
+    end
   end
 
   def edit
@@ -26,6 +26,7 @@ class PostsController < ApplicationController
   def show
      @post = Post.find(params[:id])
    rescue ActiveRecord::RecordNotFound
+     flash[:danger]= "Cant find post with id: #{@post.id}."
      redirect_to root_path
    return
   end
@@ -33,23 +34,25 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if  @post.update(post_params)
-    redirect_to  post_path(@post)
+      flash[:success]= "Post was successfully updated."
+      redirect_to  post_path(@post)
     else
-     render "edit"
+      flash.now[:danger]="There was an error."
+      render "edit"
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:success]= "Post was successfully deleted."
     redirect_to root_path
   end
 
+  private
 
-private
-
-def post_params
-  params.required(:post).permit(:body,:title,:image,:remove_image)
-end
+  def post_params
+    params.required(:post).permit(:body,:title,:image,:remove_image)
+  end
 
 end
