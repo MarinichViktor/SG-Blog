@@ -2,38 +2,45 @@ require "test_helper"
 
 class UsersTest < ActionDispatch::IntegrationTest
 fixtures :users
+  include Authorization
 
   def setup
-    @post=Post.first
     @user= users(:user1)
-    sign_out
+    log_out
   end
 
-  def test_sign_up
-    visit root_path
-    click_on('Sign Up')
-    page.fill_in "name", :with => "name_uniq"
-    page.fill_in "email", :with => "theuser@a.net"
-    page.fill_in "city", :with => "rivne ukraine"
-    page.fill_in "password", :with => "password"
-    page.fill_in "password_confirmation", :with => "password"
-    page.find('input[id="Sign Up"]').click
+  def test_creatin_new_user_and_sing_up
+     visit root_path
+     assert_difference 'User.count', 1 do
+      click_on('Sign Up')
+      page.fill_in "name", :with => "name_uniq"
+      page.fill_in "email", :with => "theuser@a.net"
+      page.fill_in "city", :with => "rivne ukraine"
+      page.fill_in "password", :with => "password"
+      page.fill_in "password_confirmation", :with => "password"
+      page.find('input[id="Sign Up"]').click
+    end
     assert page.has_content?("name_uniq")
     assert page.has_content? ('Welcome to SG Blog .Please confirm your email address to continue.')
   end
 
-  def sign_out
-    visit root_path
-    return true if page.has_content?('Sign In')
-    click_on('Sign Out')
+  def test_edit_user
+    log_in(@user)
+    assert page.has_content?(@user.name)
+    click_on ('Settings')
+    page.fill_in "name", :with => "My new name"
+    page.fill_in "password", :with => "password"
+    page.fill_in "password_confirmation", :with => "password"
+    page.find('input[id="Edit"]').click
+    assert page.has_content?("Updated succefully")
   end
 
-  def log_in
-    visit new_session_path
-    return true if page.has_content? ('You already loged in system.')
-    page.fill_in "email", :with => @user.email
-    page.fill_in "password", :with => "password"
-    page.find('input[id="login"]').click
-    assert page.has_content?(@user.name)
+  def test_fail_edit_without_user_password
+    log_in(@user)
+    visit edit_user_path(@user)
+    page.fill_in "name", :with => "My new name"
+    page.find('input[id="Edit"]').click
+    assert page.has_content?("Invalid password")
   end
+
 end

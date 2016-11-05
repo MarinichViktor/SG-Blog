@@ -1,17 +1,18 @@
-<h1 class="align-center">Sign Up</h1>
+<h1 class="align-center">Settings</h1>
 <div class="row">
+
   <div class="col-md-6 col-md-offset-3">
+    <%= render :partial => 'users_errors'%>
 
-
-<%= form_for @user do |f|%>
-  <p>
-    <%= f.label :name %></br>
-    <%= f.text_field :name ,class: "form-control" %>
-   </p>
-  <p>
-    <%= f.label :email %></br>
-    <%= f.text_field  :email, class: "form-control"%>
-  </p>
+  <%= form_for @user do |f|%>
+    <p>
+      <%= f.label :name %></br>
+      <%= f.text_field :name ,class: "form-control", id: "name" %>
+     </p>
+    <p>
+      <%= f.label :city %></br>
+      <%= f.text_field  :city, class: "form-control", id: "city" %>
+    </p>
   <% if @user.profile_img %>
   <%= image_tag @user.profile_img.small.url, class: "img-rounded" %>
 </p>
@@ -24,11 +25,10 @@
     <%= f.file_field :profile_img, :id=>"img", class: "form-control"%>
   </p>
 
-  <h6> Enter yours password to save changes</h6>
-<%= render :partial => 'password', :locals => { :f => f} %>
+  <%= render :partial => 'password', :locals => { :f => f} %>
 
    <p class="align-center">
-    <%= f.submit "Edit", class: "btn btn-primary " %>
+    <%= f.submit "Edit", class: "btn btn-primary ", id: "Edit" %>
     </p>
 <% end %>
 

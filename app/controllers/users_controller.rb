@@ -49,7 +49,7 @@ before_action :authenticate, only: [:edit]
   def update
     prev = Rails.application.routes.recognize_path(request.referrer)
     if prev[:action]== 'password_reset'
-      if  @user.update_attributes(user_params)
+      if  @user.update_attributes(user_params_without_email)
         sign_in @user
         redirect_to  user_path(@user)
       else
@@ -57,16 +57,16 @@ before_action :authenticate, only: [:edit]
         render "password_reset"
       end
     else
-      if BCrypt::Password.new(@user.password_digest).is_password?(params[:password])
-        if @user.update_attributes(user_params)
+      if BCrypt::Password.new(@user.password_digest).is_password?(params[:user][:password])
+        if @user.update_attributes(user_params_without_email)
+          flash[:success]="Updated succefully"
           redirect_to  user_path(@user)
         else
-          flash.now[:danger]="Invalid password "
           render "edit"
         end
       else
-       flash.now[:danger]="Invalid password "
-       render 'edit'
+    flash.now[:danger]="Invalid password"
+      render 'edit'
      end
     end
   end
@@ -110,6 +110,10 @@ before_action :authenticate, only: [:edit]
 
   def user_params
     params.required(:user).permit(:name,:email,:profile_img,:city, :password, :password_confirmation, :remove_profile_img)
+  end
+
+  def user_params_without_email
+    params.required(:user).permit(:name,:profile_img,:city, :password, :password_confirmation, :remove_profile_img)
   end
 
 end
