@@ -2,7 +2,7 @@
 
 <% 10.times do |n| %>
 user<%= n %>:
-  name: <%= "user№#{n}" %>
+  name: <%= "userr#{n}" %>
   email: <%= "userr#{n}@ukr.net" %>
   city: "london uk "
   password_digest: <%= User.bcrypt_str("password") %>

@@ -18,7 +18,7 @@ before_action :authenticate, only: [:edit]
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.registration_confirmation(@user).deliver
+      UserMailer.registration_confirmation(@user).deliver_now
       flash[:success] = "Hi #{@user.name}!. Welcome to SG Blog .Please confirm your email address to continue."
       sign_in @user
       redirect_to user_path(@user)
@@ -30,7 +30,7 @@ before_action :authenticate, only: [:edit]
   def search
     if @user = User.find_by(email: params[:email])
       @user.generate_reset_token
-      UserMailer.password_reset(@user).deliver
+      UserMailer.password_reset(@user).deliver_now
       @user.update_attribute(:reset_token, User.bcrypt_str(@user.reset_token,1))
       flash[:success]="Email with instructions to reset yours password was sended."
       redirect_to root_path

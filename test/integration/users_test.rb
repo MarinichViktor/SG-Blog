@@ -12,13 +12,13 @@ fixtures :users
   def test_sign_up
     visit root_path
     click_on('Sign Up')
-    page.fill_in "name", :with => "name"
+    page.fill_in "name", :with => "name_uniq"
     page.fill_in "email", :with => "theuser@a.net"
     page.fill_in "city", :with => "rivne ukraine"
     page.fill_in "password", :with => "password"
     page.fill_in "password_confirmation", :with => "password"
     page.find('input[id="Sign Up"]').click
-    assert page.has_content?(@user.name)
+    assert page.has_content?("name_uniq")
     assert page.has_content? ('Welcome to SG Blog .Please confirm your email address to continue.')
   end
 

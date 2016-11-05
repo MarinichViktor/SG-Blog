@@ -2,4 +2,4 @@
 
 <h3>Thanks for registrating! To confirm your registration click the URL below.</h3>
 
-<a href=<%= confirm_email_user_url(@user.confirm_token)%>>Activate </a>
+<%= link_to "Activate",  confirm_email_user_url(@user.confirm_token, email: @user.email) %>
