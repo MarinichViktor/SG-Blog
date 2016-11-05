@@ -9,7 +9,7 @@ fixtures :users
     log_out
   end
 
-  def test_creatin_new_user_and_sing_up
+  def test_create_new_user_and_sing_up
      visit root_path
      assert_difference 'User.count', 1 do
       click_on('Sign Up')

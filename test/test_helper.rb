@@ -10,13 +10,13 @@ require 'database_cleaner'
 
 DatabaseCleaner.strategy = :transaction
 DatabaseCleaner.clean_with(:truncation)
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :selenium
 Capybara.default_max_wait_time = 5
 include Rails.application.routes.url_helpers
 
 class ActiveSupport::TestCase
   include Capybara::DSL
-  
+
   def login(user)
       old_controller = @controller
       @controller = SessionsController.new

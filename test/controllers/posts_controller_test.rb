@@ -12,6 +12,9 @@ fixtures :users,:posts
     get :index
     assert_response :success
     assert_not_nil assigns(:posts)
+    assert_select "div.col-sm-4" do
+      assert_select "div.thumbnail",9
+    end
   end
 
 
@@ -20,6 +23,9 @@ fixtures :users,:posts
     assert_response :success
     assert_kind_of String, assigns(:post).title
     assert_kind_of String, assigns(:post).body
+    assert_select 'div.profile'
+    assert_select 'div.post-body'
+    assert_template 'posts/show'
   end
 
   def test_create_post
@@ -33,6 +39,9 @@ fixtures :users,:posts
     login(@user)
     get :edit, id: @post
     assert_response :success
+    assert_not_nil assigns(:post).title
+    assert_not_nil assigns(:post).body
+    assert_template 'posts/edit'
   end
 
   def test_update_post

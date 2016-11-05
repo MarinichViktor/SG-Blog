@@ -11,6 +11,7 @@ fixtures :users,:posts
   def test_get_new_session
     get :new
     assert_response :success
+    assert_template 'sessions/new'
   end
 
   def test_create_session

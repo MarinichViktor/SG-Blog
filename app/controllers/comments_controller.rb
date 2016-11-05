@@ -3,9 +3,10 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(params.require(:comment).permit(:text,:user_id))
-    @comment.user_id=current_user.id
+    @comment = @post.comments.new(text: params[:comment][:text])
+    current_user.comments << @comment
     @comment.save
+  #redirect_to post_path(@post)
   respond_to  do |format|
     format.js
   end

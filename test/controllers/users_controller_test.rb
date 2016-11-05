@@ -8,44 +8,47 @@ fixtures :users,:posts
     @post=posts(:one)
   end
 
+  def test_get_new
+    get :new
+    assert_response :success
+  end
+
   def test_get_index
     get :index
     assert_response :success
-    assert_not_nil assigns(:posts)
+    assert_not_nil assigns(:users)
+    assert_not_nil assigns(:hash)
+
   end
-
-
-  def test_get_show_post
-    get :show, id: @post
+  def test_get_show_user
+    get :show, id: @user
     assert_response :success
-    assert_kind_of String, assigns(:post).title
-    assert_kind_of String, assigns(:post).body
+    assert_kind_of String, assigns(:user).name
+    assert_kind_of String, assigns(:user).email
   end
 
-  def test_create_post
-    login(@user)
-    assert_difference('Post.count',1) do
-      post :create, post: { body: @post.body, title: @post.title, user_id: @user.id }
+  def test_create_user
+    assert_difference('User.count',1) do
+      post :create, user: { name: @user.name, city: @user.city, email: "pam12345@ukr.net",
+         password: "password",password_confirmation: "password" }
     end
+    assert_redirected_to user_path(User.last)
   end
 
-  def test_get_edit_post
+  def test_update_user
     login(@user)
-    get :edit, id: @post
+    name = @user.name
+    patch :update, id: @user, user: { name:" new name", city: @user.city, email: "pam12345@ukr.net",
+         password: "password",password_confirmation: "password" }
+    assert_redirected_to user_path(@user)
+    assert_not_equal assigns(:user).name, name
+  end
+
+  def test_edit_user
+    login(@user)
+    get :edit, id: @user
     assert_response :success
   end
 
-  def test_update_post
-    login(@user)
-    title =@post.title
-    patch :update,id: @post,  post: { body: @post.body, title: "x"*10, user_id: @user.id }
-    assert_not_equal assigns(:post).title, title
-  end
 
-  def test_destroy_post
-    login(@user)
-    assert_difference('Post.count',-1) do
-      delete :destroy, id: @user.posts.last.id
-    end
-  end
 end
