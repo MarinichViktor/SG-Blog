@@ -1,13 +1,15 @@
 require "test_helper"
 
 class CommentsTest < ActionDispatch::IntegrationTest
-  fixtures :posts
+  fixtures :posts, :users
 
   def setup
     super
+    @user=users(:user1)
     Capybara.current_driver = Capybara.javascript_driver
+    log_in
     visit root_path
-    first('.post-link').click
+    first('.btn').click
   end
 
   def teardown
@@ -36,5 +38,14 @@ class CommentsTest < ActionDispatch::IntegrationTest
      page.fill_in "comment_body", :with => "aa"
      click_on("comment_submit")
      page.has_content? ("aa")
+   end
+
+   def log_in
+     visit new_session_path
+     return true if page.has_content? ('You already loged in system.')
+     page.fill_in "email", :with => @user.email
+     page.fill_in "password", :with => "password"
+     page.find('input[id="login"]').click
+     assert page.has_content?(@user.name)
    end
 end

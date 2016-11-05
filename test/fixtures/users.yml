@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-<% 20.times do |n| %>
+<% 10.times do |n| %>
 user<%= n %>:
   name: <%= "user№#{n}" %>
-  email: <%= "user№#{n}@ukr.net" %>
+  email: <%= "userr#{n}@ukr.net" %>
   city: "london uk "
   password_digest: <%= User.bcrypt_str("password") %>
 <% end %>

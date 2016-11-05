@@ -55,7 +55,6 @@ fixtures :users
     assert page.has_content?(@user.name)
   end
 
-
   def create_posts
     cities = ["odessa ukraine","kyiv ukraine","lviv ukraine","minsk belorussia","moscow russia","omsk russia","berlin german","london uk",'sidney',"warsaw","tbilisi georgia","madrid spain"]
     10.times do |x|
