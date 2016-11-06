@@ -1,5 +1,5 @@
 <p style="text-align: center">
-  <%= image_tag @user.profile_img.url, class: "img-thumbnail" %>
+  <%= image_tag @user.profile_img.large.url, class: "img-thumbnail" %>
 </p>
 <ul class="list-group">
   <li class="list-group-item">
@@ -10,7 +10,7 @@
   </li>
   <li class="list-group-item">
     <span class="badge">
-          <%= @user.email %>
+      <%= @user.email %>
     </span>
     Email:
   </li>
@@ -27,8 +27,8 @@
     Joined:
   </li>
   <li class="list-group-item">
-    <h4 class="align-center">
+    <h5 class="align-center">
       <%=link_to 'Profile', user_path(@user), class: "align-center"%>
-    </h4>
+    </h5>
   </li>
 </ul>

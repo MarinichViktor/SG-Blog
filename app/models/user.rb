@@ -13,8 +13,7 @@ class User < ActiveRecord::Base
   mount_uploader :profile_img, ImageUploader
   geocoded_by :city
   after_validation :geocode
-
-
+  after_destroy :delete_user_image_folder
 
   def authenticated?(remember_token)
     return false if remember_digest.nil?
@@ -43,6 +42,10 @@ class User < ActiveRecord::Base
     end
   end
   private
+
+  def delete_user_image_folder
+      FileUtils.remove_dir(File.join(Rails.root, File.join( 'public' ,'uploads','user','profile_img',"#{self.id}")), :force => true)
+  end
 
   def check_geocodes
     return true if self.latitude

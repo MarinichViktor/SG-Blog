@@ -6,7 +6,7 @@
     <div class="panel panel-default ">
       <div class="panel-body">
         <h4>
-          <a href=<%= @user.posts.last.title %>><%=@user.posts.last%></a>
+          <a href=<%= post_path(@user.posts.last) %>><%= @user.posts.last.title%></a>
         </h4>
       </div>
     </div>

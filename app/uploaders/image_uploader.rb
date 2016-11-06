@@ -17,6 +17,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   @cache_id_was = cache_id
   end
 
+  
   def delete_tmp_dir(new_file)
   # make sure we don't delete other things accidentally by checking the name pattern
   if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
@@ -63,6 +64,9 @@ class ImageUploader < CarrierWave::Uploader::Base
      process :resize_to_fill => [350, 350]
    end
 
+   version :large do
+     process :resize_to_fill => [850, 850]
+   end
 
 
   # Add a white list of extensions which are allowed to be uploaded.
