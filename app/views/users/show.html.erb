@@ -1,28 +1,41 @@
 <div class="row ">
-
+<h1 class="align-center border-bot"> <%=  @user.name %> </h1>
   <div class="col-sm-7 add-margin ">
     <% unless @user.posts.last.nil? %>
-    <h3 class="align-center">Last post</h3>
+    <h3 class="align-center border-top-bot">Last post</h3>
     <div class="panel panel-default ">
       <div class="panel-body">
-        <h4>
+        <h4 class="align-center border-bot padding">
           <a href=<%= post_path(@user.posts.last) %>><%= @user.posts.last.title%></a>
         </h4>
+        <h4>
+          <%= body_article(@user.posts.last.body) %>
+        </h4>
+        <p class="border-top font-12 align-center padding" >
+          Created: <%= time_ago_in_words(@user.posts.last.created_at)%> ago
+        </p>
       </div>
     </div>
+
     <% end %>
     <% unless @user.comments.last.nil?%>
-    <h3 class="align-center"><%=link_to 'Post with last comment', @user.comments.last.post %></h3>
+    <h3 class="align-center border-top-bot ">Last comment</h3>
     <div class="panel panel-default ">
       <div class="panel-body">
-        <h4>
-        <%=  @user.comments.last.text %>
-        </h4>
+        <h5 class="border-top padding">
+          <i>"<%=  @user.comments.last.text %>"</i>
+        </h5>
+        <p class="border-top font-12 align-center padding" >
+          Created: <%= time_ago_in_words(@user.comments.last.created_at)%> ago
+        </p>
+        <p class="border-top font-12 align-center padding">
+          Post: <%= link_to @user.comments.last.post.title, post_path(@user.comments.last.post)%>
+        </p>
       </div>
     </div>
     <% end %>
-    <h4 class="align-center border padding add-margin">
-      <b>Find me on map</b>
+    <h4 class="align-center border-top-bot padding add-margin">
+      <b><%=  @user.name %> on map</b>
     </h4>
   <div class="col-sm-12    padding">
     <div style='width: 100%;'>
@@ -30,7 +43,7 @@
     </div>
   </div>
   </div>
-  <div class="col-sm-3 col-sm-offset-1 add-margin ">
+  <div class="col-sm-3 col-sm-offset-1 add-margin border padding shadow black b-radius">
       <%= render partial: "shared/profile" %>
   </div>
   </div>

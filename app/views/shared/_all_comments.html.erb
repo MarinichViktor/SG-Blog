@@ -2,7 +2,9 @@
 <div class="row border-top padding ">
   <div class="col-sm-2  height-120 hidden-xs padding ">
     <p class="align-center ">
-      <%= image_tag comment.user.profile_img.smaller.url, class: "img-thumbnail" %>
+      <a href=<%= user_path(comment.user)%> class="thumbnail">
+        <%= image_tag comment.user.profile_img.smaller.url %>
+      </a>
     </p>
   </div>
   <div class="col-sm-8  height-120 ">
