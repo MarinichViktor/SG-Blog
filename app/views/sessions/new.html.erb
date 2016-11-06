@@ -1,26 +1,20 @@
 <h1 class="align-center">Sign in</h1>
-
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(:session, url: session_path) do |f| %>
-
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control ', id: 'email'%>
-
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control ', id: 'password'%>
-
       <%= f.label :remember_me, class: "checkbox inline" do %>
-      <%= f.check_box :remember_me %>
-    <span>Remember me on this computer</span>
-  <% end %>
-  <p class="align-center">
-      <%= f.submit "Log in", class: "btn btn-primary ", id: 'login'%>
-  </p>
+        <%= f.check_box :remember_me %>
+        <span>Remember me on this computer</span>
+      <% end %>
+      <p class="align-center">
+        <%= f.submit "Log in", class: "btn btn-primary ", id: 'login'%>
+      </p>
     <% end %>
-
     <p>New user? <%=link_to 'Sign Up', new_user_path%></p>
     <p>Forget password? <%=link_to 'Reset password', email_find_users_path%></p>
-
   </div>
 </div>

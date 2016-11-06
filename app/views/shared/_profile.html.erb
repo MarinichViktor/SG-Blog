@@ -1,11 +1,11 @@
-<p style="text-align: center">
+<p class="align-center">
   <% if request.env['PATH_INFO'] == user_path(@user) %>
   <%= image_tag @user.profile_img.large.url , class: "img-thumbnail" %>
   <% else %>
   <a href=<%= user_path(@user)%> class="thumbnail">
-  <%= image_tag @user.profile_img.large.url %>
-  <% end %>
-</a>
+    <%= image_tag @user.profile_img.large.url %>
+    <% end %>
+  </a>
 </p>
 <ul class="list-group">
   <li class="list-group-item">

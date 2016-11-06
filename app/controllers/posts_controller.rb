@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate, except: [:index, :show]
+
   def index
     @posts = Post.all
   end
@@ -10,7 +11,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    if  @post.save
+    if @post.save
       flash[:success] = "You have added new post."
       redirect_to  post_path(@post)
     else
@@ -26,10 +27,6 @@ class PostsController < ApplicationController
   def show
      @post = Post.find(params[:id])
      @user = @post.user
-   rescue ActiveRecord::RecordNotFound
-     flash[:danger]= "Cant find post with id: #{@post.id}."
-     redirect_to root_path
-   return
   end
 
   def update
@@ -55,5 +52,4 @@ class PostsController < ApplicationController
   def post_params
     params.required(:post).permit(:body,:title,:user_id,:image,:remove_image)
   end
-
 end

@@ -2,30 +2,28 @@
 <div class="row ">
   <div class="col-md-6 col-md-offset-3">
     <%= render :partial => '/shared/users_errors'%>
+    <%= form_for @user do |f|%>
+      <p>
+        <%= f.label :name %></br>
+        <%= f.text_field :name ,class: "form-control", id: "name" %>
+       </p>
+      <p>
+        <%= f.label :email %></br>
+        <%= f.text_field  :email, class: "form-control", id: "email"%>
+      </p>
+      <p>
+        <%= f.label :city %></br>
+        <%= f.text_field  :city, class: "form-control", id: "city" %>
+      </p>
+      <p>
+        <%= f.label :profile_img %></br>
+        <%= f.file_field :profile_img, :id=>"img", class: "form-control"%>
+      </p>
+      <%= render :partial => 'shared/password', :locals => { :f => f} %>
 
-
-<%= form_for @user do |f|%>
-  <p>
-    <%= f.label :name %></br>
-    <%= f.text_field :name ,class: "form-control", id: "name" %>
-   </p>
-  <p>
-    <%= f.label :email %></br>
-    <%= f.text_field  :email, class: "form-control", id: "email"%>
-  </p>
-  <p>
-    <%= f.label :city %></br>
-    <%= f.text_field  :city, class: "form-control", id: "city" %>
-  </p>
-  <p>
-    <%= f.label :profile_img %></br>
-    <%= f.file_field :profile_img, :id=>"img", class: "form-control"%>
-  </p>
-  <%= render :partial => 'shared/password', :locals => { :f => f} %>
-
-   <p class="align-center">
-    <%= f.submit "Sign Up", class: "btn btn-primary ", id: "Sign Up" %>
-    </p>
-<% end %>
-</div>
+       <p class="align-center">
+        <%= f.submit "Sign Up", class: "btn btn-primary ", id: "Sign Up" %>
+        </p>
+    <% end %>
+  </div>
 </div>

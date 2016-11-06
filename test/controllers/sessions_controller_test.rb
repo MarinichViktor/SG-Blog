@@ -20,6 +20,7 @@ fixtures :users,:posts
   end
 
   def test_destroy_session
+    post :create, session: { email:  @user.email, password: 'password' }
     delete :destroy , session: { email:  @user.email, password: 'password' }
     assert_redirected_to root_path
   end

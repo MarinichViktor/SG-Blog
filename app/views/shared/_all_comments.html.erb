@@ -1,26 +1,26 @@
 <% @post.comments.order(created_at: :desc).limit(n).each do |comment| %>
-<div class="row border-top padding ">
-  <div class="col-sm-2  height-120 hidden-xs padding ">
-    <p class="align-center ">
-      <a href=<%= user_path(comment.user)%> class="thumbnail">
-        <%= image_tag comment.user.profile_img.smaller.url %>
-      </a>
-    </p>
+  <div class="row border-top padding ">
+    <div class="col-sm-2  height-120 hidden-xs padding ">
+      <p class="align-center ">
+        <a href=<%= user_path(comment.user)%> class="thumbnail">
+          <%= image_tag comment.user.profile_img.smaller.url %>
+        </a>
+      </p>
+    </div>
+    <div class="col-sm-8  height-120 ">
+      <p class="font-12 "><span class=" font-12 badge"><%=comment.user.name %> posted <%=  time_ago_in_words(comment.created_at)%> ago </span></p>
+      <h4 class="border-top-bot"><%=  comment.text %></h4>
+    </div>
   </div>
-  <div class="col-sm-8  height-120 ">
-    <p class="font-12 "><span class=" font-12 badge"><%=comment.user.name %> posted <%=  time_ago_in_words(comment.created_at)%> ago </span></p>
-    <h4 class="border-top-bot"><%=  comment.text %></h4>
-  </div>
-</div>
 <% end %>
 <div class="align-center add-margin " style="padding-bottom: 30px">
-  <% if (@post.comments.count >=3 ) %>
-<p class="align-center border-top-bot ">
-  <%=link_to 'Show all', '#',  class: "btn btn-success show_all ", remote: true%>
-</p>
+   <% if (@post.comments.count >=3 ) %>
+     <p class="align-center border-top-bot ">
+       <%=link_to 'Show all', '#',  class: "btn btn-success show_all ", remote: true%>
+     </p>
   <% elsif (@post.comments.count <1) %>
-   <h4 class="align-center border-bot add-margin padding">
-    No comments for this post
-  </h4>
+     <h4 class="align-center border-bot add-margin padding">
+      No comments for this post
+     </h4>
   <%end%>
 </div>

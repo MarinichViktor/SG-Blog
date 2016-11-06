@@ -1,45 +1,40 @@
 <div class=" col-sm-8 col-sm-offset-2 paddings add-margin">
-<div class="add_paddings ">
-  <div class="">
-    <% if @post.errors.any? %>
-    <div class=" alert alert-danger">
-  <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-      <li>
-        <%= msg %>
-      </li>
-    <% end %>
-  </ul>
-
-      </div>
+  <div class="add_paddings ">
+    <div class="">
+      <% if @post.errors.any? %>
+        <div class=" alert alert-danger">
+          <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+              <li>
+                <%= msg %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <%= form_for @post do |f|%>
+      <p>
+        <%= f.label "title" %></br>
+        <%= f.text_field :title , :id=>"post_name",class: "form-control" %>
+      </p>
+      <p>
+        <%= f.label :body %></br>
+        <%= f.text_area :body, :id=>"post_val", class: "form-control", rows: "4" %>
+      </p>
+      <p>
+        <%= f.label :image %></br>
+        <%= f.file_field :image, :id=>"img", class: "form-control"%>
+      </p>
+      <p>
+        <% if @post.image %>
+        <%= image_tag @post.image.small.url, class: "img-rounded" %>
+      </p>
+        <%= f.label "Delete current post image" %></br>
+        <%= f.check_box :remove_image %>
+      </p>
+        <% end %>
+        <%= f.submit name, :id=>"post_send" %>
     <% end %>
   </div>
-
-
-
-<%= form_for @post do |f|%>
-  <p>
-    <%= f.label "title" %></br>
-    <%= f.text_field :title , :id=>"post_name",class: "form-control" %>
-   </p>
-  <p>
-    <%= f.label :body %></br>
-    <%= f.text_area :body, :id=>"post_val", class: "form-control", rows: "4" %>
-  </p>
-  <p>
-    <%= f.label :image %></br>
-    <%= f.file_field :image, :id=>"img", class: "form-control"%>
-  </p>
-  <p>
-    <% if @post.image %>
-    <%= image_tag @post.image.small.url, class: "img-rounded" %>
-  </p>
-    <%= f.label "Delete current post image" %></br>
-    <%= f.check_box :remove_image %>
-  </p>
-  <% end %>
-
-    <%= f.submit name, :id=>"post_send" %>
-<% end %>
-</div>
 </div>

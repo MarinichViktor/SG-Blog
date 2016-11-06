@@ -16,7 +16,6 @@
         </p>
       </div>
     </div>
-
     <% end %>
     <% unless @user.comments.last.nil?%>
     <h3 class="align-center border-top-bot ">Last comment</h3>
@@ -37,23 +36,16 @@
     <h4 class="align-center border-top-bot padding add-margin">
       <b><%=  @user.name %> on map</b>
     </h4>
-  <div class="col-sm-12    padding">
-    <div style='width: 100%;'>
-      <div id="map" style='width: 100%; height: 300px;'></div>
+    <div class="col-sm-12    padding">
+      <div style='width: 100%;'>
+        <div id="map" style='width: 100%; height: 300px;'></div>
+      </div>
     </div>
   </div>
-  </div>
   <div class="col-sm-3 col-sm-offset-1 add-margin border padding shadow black b-radius">
-      <%= render partial: "shared/profile" %>
+    <%= render partial: "shared/profile" %>
   </div>
-  </div>
-
-
 </div>
-
-</li>
-</ul>
-
 
 <script type="text/javascript">
 handler = Gmaps.build('Google');

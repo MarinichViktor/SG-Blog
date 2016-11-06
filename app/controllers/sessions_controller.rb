@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-# before_action :authenticate, only: [:destroy]
+ before_action :authenticate, only: [:destroy]
 
   def new
     if user_signed_in?
@@ -27,5 +27,4 @@ class SessionsController < ApplicationController
     sign_out
     redirect_to root_path
   end
-
 end

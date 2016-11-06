@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   def authenticated?(remember_token)
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
-
   end
 
   def email_activate
@@ -41,6 +40,7 @@ class User < ActiveRecord::Base
       true
     end
   end
+  
   private
 
   def delete_user_image_folder

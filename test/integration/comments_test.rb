@@ -2,7 +2,7 @@ require "test_helper"
 
 class SessionsTest < ActionDispatch::IntegrationTest
   fixtures :posts, :users
-include Authorization
+include SessionMethods
   def setup
     super
     @user=users(:user1)

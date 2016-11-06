@@ -1,36 +1,31 @@
 <h1 class="align-center">Settings</h1>
 <div class="row">
-
   <div class="col-md-6 col-md-offset-3">
     <%= render :partial => 'shared/users_errors'%>
-
-  <%= form_for @user do |f|%>
-    <p>
-      <%= f.label :name %></br>
-      <%= f.text_field :name ,class: "form-control", id: "name" %>
-     </p>
-    <p>
-      <%= f.label :city %></br>
-      <%= f.text_field  :city, class: "form-control", id: "city" %>
-    </p>
-  <% if @user.profile_img %>
-  <%= image_tag @user.profile_img.small.url, class: "img-rounded" %>
-</p>
-  <%= f.label "Delete profile image" %></br>
-  <%= f.check_box :remove_profile_img %>
-</p>
-<% end %>
-  <p>
-    <%= f.label :profile_img %></br>
-    <%= f.file_field :profile_img, :id=>"img", class: "form-control"%>
-  </p>
-
-  <%= render :partial => 'shared/password', :locals => { :f => f} %>
-
-   <p class="align-center">
-    <%= f.submit "Edit", class: "btn btn-primary ", id: "Edit" %>
-    </p>
-<% end %>
-
-</div>
+    <%= form_for @user do |f|%>
+      <p>
+        <%= f.label :name %></br>
+        <%= f.text_field :name ,class: "form-control", id: "name" %>
+      </p>
+      <p>
+        <%= f.label :city %></br>
+        <%= f.text_field  :city, class: "form-control", id: "city" %>
+      </p>
+      <% if @user.profile_img %>
+        <%= image_tag @user.profile_img.small.url, class: "img-rounded" %>
+      </p>
+        <%= f.label "Delete profile image" %></br>
+        <%= f.check_box :remove_profile_img %>
+      </p>
+      <% end %>
+      <p>
+        <%= f.label :profile_img %></br>
+        <%= f.file_field :profile_img, :id=>"img", class: "form-control"%>
+      </p>
+      <%= render :partial => 'shared/password', :locals => { :f => f} %>
+      <p class="align-center">
+        <%= f.submit "Edit", class: "btn btn-primary ", id: "Edit" %>
+      </p>
+    <% end %>
+  </div>
 </div>

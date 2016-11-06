@@ -1,16 +1,14 @@
 <div class="row">
 <h3 class="align-center">Enter yours email address to reset password</h3>
-<div class="col-md-6 col-md-offset-3">
-<%= form_tag(search_users_path) do %>
-</br>
-<p>
-  <%= text_field_tag(:email, params[:email],class: "form-control")  %>
-
-</p>
-<p class="align-center">
-  <%= submit_tag("Reset", name: nil, class: "btn btn-primary  ") %>
-
-</p>
-<% end %>
-</div>
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_tag(search_users_path) do %>
+      </br>
+      <p>
+        <%= text_field_tag(:email, params[:email],class: "form-control")  %>
+      </p>
+      <p class="align-center">
+        <%= submit_tag("Reset", name: nil, class: "btn btn-primary  ") %>
+      </p>
+    <% end %>
+  </div>
 </div>

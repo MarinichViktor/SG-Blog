@@ -2,7 +2,7 @@ require "test_helper"
 
 class PostsTest < ActionDispatch::IntegrationTest
 fixtures :users,:posts
-include Authorization
+include SessionMethods
 include Rails.application.routes.url_helpers
   def setup
     create_posts

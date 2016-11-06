@@ -2,7 +2,7 @@ require "test_helper"
 
 class CommentsTest < ActionDispatch::IntegrationTest
   fixtures :posts, :users
-  include Authorization
+  include SessionMethods
 
   def setup
     @user= users(:user1)

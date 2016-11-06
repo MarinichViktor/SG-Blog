@@ -36,7 +36,7 @@ class   ActionDispatch::IntegrationTest < ActiveSupport::TestCase
 
 end
 
-  module  Authorization
+  module  SessionMethods
     def log_out
       visit root_path
       return true if page.has_content?('Sign In')

@@ -1,31 +1,28 @@
 <div class="row border-top-bot profile-container">
   <div class="col-sm-2  profile-info shadow black b-radius">
     <%= render partial: "shared/profile" %>
-
   </div>
   <div class="col-sm-8  post-body border padding shadow black">
     <strong><h1 class="align-center add-margin color-white">"<%= @post.title%>"</h1></strong>
-
-      <p class="align-center add-margin">
-        <%= image_tag @post.image.medium.url, class: "img-thumbnail" %>
-      </p>
+    <p class="align-center add-margin">
+      <%= image_tag @post.image.medium.url, class: "img-thumbnail" %>
+    </p>
     <p class="add-margin color-dwhite">
       <%= @post.body%>
     </p>
   </div>
 </div>
 <div class="row  border-bot ">
-<div class="col-sm-12 new-comment">
- <div class="col-sm-8 col-sm-offset-2">
-   <% if user_signed_in? %>
-   <%= render :partial => "shared/new_comment"%>
-   <% else%>
-   <h4 class="align-center">Sign in to add comments</h4>
-   <%end %>
- </div>
+  <div class="col-sm-12 new-comment">
+   <div class="col-sm-8 col-sm-offset-2">
+     <% if user_signed_in? %>
+     <%= render :partial => "shared/new_comment"%>
+     <% else%>
+     <h4 class="align-center">Sign in to add comments</h4>
+     <%end %>
+   </div>
+  </div>
 </div>
-</div>
-
 <div class=" col-sm-10 col-sm-offset-1 commentarys_container padding">
   <%= render :partial => "shared/all_comments",  :locals => {:n=> 2 }%>
 </div>

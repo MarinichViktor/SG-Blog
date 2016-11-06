@@ -1,10 +1,9 @@
-
 <div class="container">
   <div class="row">
     <div class="top-margin ">
     <% @posts.latest_nine.each do |post| %>
       <div class="col-sm-4 col-md-4 ">
-        <div class="thumbnail black shadow">
+        <div class="thumbnail black">
           <img src=<%=post.image.medium.url %> alt="...">
           <div class="caption">
             <h3 class="align-center color-white"><%= title_short(post.title)%></h3>

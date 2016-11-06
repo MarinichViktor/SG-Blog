@@ -1,10 +1,10 @@
 <div class="comments ">
   <h3 class="align-center">New Comment</h3>
-    <%= form_for([@post, @post.comments.build], remote: true) do |f| %>
-<div class="border">
-      <%= f.text_area :text, :id=>"comment_body", class: "another form-control",placeholder: "Type yours comment", rows: "2" %>
-</div>
-  <h5 class="error-container"></h5>
-  <p class="align-center"><%= f.submit "Add comment", :id=>"comment_submit"%></p>
-    <% end %>
+  <%= form_for([@post, @post.comments.build], remote: true) do |f| %>
+    <div class="border">
+    <%= f.text_area :text, :id=>"comment_body", class: "another form-control",placeholder: "Type yours comment", rows: "2" %>
+    </div>
+    <h5 class="error-container"></h5>
+    <p class="align-center"><%= f.submit "Add comment", :id=>"comment_submit"%></p>
+  <% end %>
 </div>

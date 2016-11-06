@@ -2,7 +2,7 @@ require "test_helper"
 
 class UsersTest < ActionDispatch::IntegrationTest
 fixtures :users
-  include Authorization
+  include SessionMethods
 
   def setup
     @user= users(:user1)

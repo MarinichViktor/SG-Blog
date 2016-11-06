@@ -1,24 +1,23 @@
-  <h1 class="align-center"> Users landing</h1>
+<h1 class="align-center"> Users landing</h1>
 <div class="col-sm-4 ">
   <ul class="list-group">
-  <% User.all.each do |u|%>
-    <li class="list-group-item">
+    <% User.all.each do |u|%>
+      <li class="list-group-item">
       <span class="badge">
-        <%= u.city %>
+      <%= u.city %>
       </span>
       <% if u == current_user%>
         <h4>You</h4>
       <% else %>
-      <%= u.name %>
+        <%= u.name %>
       <% end %>
-    </li>
+      </li>
     <% end %>
   </ul>
-
 </div>
-  <div class="border">
+<div class="border">
   <div id="map" style='width: ; height: 400px;'></div>
-  </div>
+</div>
 
 <script type="text/javascript">
 handler = Gmaps.build('Google');
