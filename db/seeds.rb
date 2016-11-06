@@ -52,8 +52,14 @@ def post_titles
   ]
 end
 cities = ["odessa ukraine","kyiv ukraine","lviv ukraine","minsk belorussia","moscow russia","omsk russia","berlin german","london uk",'sidney',"warsaw","tbilisi georgia","madrid spain"]
-User.delete_all
-Post.delete_all
+Comment.delete_all
+Post.all.each do |p|
+  p.destroy
+end
+User.all.each do |u|
+  u.destroy
+end
+
 16.times do |n|
   z=rand(12)
   x=rand(4)+1
