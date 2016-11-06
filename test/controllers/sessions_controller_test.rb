@@ -19,6 +19,11 @@ fixtures :users,:posts
     assert_redirected_to user_path(@user)
   end
 
+  def test_destroy_session_without_login
+    delete :destroy , session: { email:  @user.email, password: 'password' }
+    assert_redirected_to new_session_path
+  end
+
   def test_destroy_session
     post :create, session: { email:  @user.email, password: 'password' }
     delete :destroy , session: { email:  @user.email, password: 'password' }

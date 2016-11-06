@@ -44,6 +44,11 @@ fixtures :users,:posts
     assert_not_equal assigns(:user).name, name
   end
 
+  def test_edit_user_without_login
+    get :edit, id: @user
+    assert_redirected_to new_session_path
+  end
+
   def test_edit_user
     login(@user)
     get :edit, id: @user

@@ -35,6 +35,11 @@ fixtures :users,:posts
     end
   end
 
+  def test_create_post_without_login
+    post :create, post: { body: @post.body, title: @post.title, user_id: @user.id }
+    assert_redirected_to new_session_path
+  end
+
   def test_get_edit_post
     login(@user)
     get :edit, id: @post
@@ -44,11 +49,20 @@ fixtures :users,:posts
     assert_template 'posts/edit'
   end
 
+  def test_get_edit_post_without_login
+    get :edit, id: @post
+    assert_redirected_to new_session_path
+  end
+
   def test_update_post
     login(@user)
     title =@post.title
     patch :update,id: @post,  post: { body: @post.body, title: "x"*10, user_id: @user.id }
     assert_not_equal assigns(:post).title, title
+  end
+  def test_update_post_without_login
+    patch :update,id: @post,  post: { body: @post.body, title: "x"*10, user_id: @user.id }
+    assert_redirected_to new_session_path
   end
 
   def test_destroy_post
@@ -56,5 +70,10 @@ fixtures :users,:posts
     assert_difference('Post.count',-1) do
       delete :destroy, id: @user.posts.last.id
     end
+  end
+
+  def test_destroy_post_post_without_login
+    patch :update,id: @post,  post: { body: @post.body, title: "x"*10, user_id: @user.id }
+    assert_redirected_to new_session_path
   end
 end
