@@ -1,17 +1,17 @@
 <div class="row ">
 
   <div class="col-sm-7 add-margin ">
-    <% if @user.posts.last %>
+    <% unless @user.posts.last.nil? %>
     <h3 class="align-center">Last post</h3>
     <div class="panel panel-default ">
       <div class="panel-body">
         <h4>
-          <%=link_to  @user.posts.last.title ,@user.posts.last %>
+          <a href=<%= @user.posts.last.title %>><%=@user.posts.last%></a>
         </h4>
       </div>
     </div>
     <% end %>
-    <% if @user.comments.last%>
+    <% unless @user.comments.last.nil?%>
     <h3 class="align-center"><%=link_to 'Post with last comment', @user.comments.last.post %></h3>
     <div class="panel panel-default ">
       <div class="panel-body">

@@ -2,15 +2,15 @@ require "test_helper"
 
 class CommentsTest < ActionDispatch::IntegrationTest
   fixtures :posts, :users
-  #include Authorization
+  include Authorization
 
   def setup
     @user= users(:user1)
-    #log_out
+    log_out
   end
 
   def test_sign_in
-    visit '/'
+    visit root_path
     click_on('Sign In')
     page.fill_in "email", :with => @user.email
     page.fill_in "password", :with => "password"
@@ -20,7 +20,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
   end
 
   def test_sign_out
-    visit ('/')
+    visit root_path
     log_in(@user)
     click_on('Sign Out')
     assert page.has_content?('Sign In')

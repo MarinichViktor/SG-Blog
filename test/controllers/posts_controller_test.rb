@@ -23,7 +23,7 @@ fixtures :users,:posts
     assert_response :success
     assert_kind_of String, assigns(:post).title
     assert_kind_of String, assigns(:post).body
-    assert_select 'div.profile'
+    assert_select 'div.profile-container'
     assert_select 'div.post-body'
     assert_template 'posts/show'
   end

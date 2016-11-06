@@ -27,11 +27,11 @@ end
 
 class   ActionDispatch::IntegrationTest < ActiveSupport::TestCase
   def setup
-    #DatabaseCleaner.start
+    DatabaseCleaner.start
   end
   def teardown
     Capybara.use_default_driver
-  #  DatabaseCleaner.clean
+    DatabaseCleaner.clean
   end
 
 end
@@ -44,7 +44,7 @@ end
     end
 
     def log_in (user)
-      visit (session/new)
+      visit new_session_path
       return true if page.has_content? ('You already loged in system.')
       page.fill_in "email", :with => user.email
       page.fill_in "password", :with => "password"
