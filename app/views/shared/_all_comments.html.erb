@@ -1,8 +1,8 @@
 <% @post.comments.order(created_at: :desc).limit(n).each do |comment| %>
 <div class="row border-top padding">
-  <div class="col-sm-2  height-120 hidden-xs">
+  <div class="col-sm-2  height-120 hidden-xs padding">
     <p style="text-align: center">
-      <%= image_tag comment.user.profile_img.small.url, class: "img-thumbnail" %>
+      <%= image_tag comment.user.profile_img.smaller.url, class: "img-thumbnail" %>
     </p>
   </div>
   <div class="col-sm-8  height-120">

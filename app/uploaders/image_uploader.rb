@@ -17,7 +17,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   @cache_id_was = cache_id
   end
 
-  
+
   def delete_tmp_dir(new_file)
   # make sure we don't delete other things accidentally by checking the name pattern
   if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
@@ -50,6 +50,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
    version :thumb do
      process :resize_to_fill => [50, 50]
+   end
+   version :smaller do
+     process :resize_to_fill => [100, 100]
    end
 
    version :small do

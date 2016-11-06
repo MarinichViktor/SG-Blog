@@ -3,8 +3,8 @@ if (value =='Show all' ){
 $(".commentarys_container").html(
   '<% @post.comments.order(created_at: :desc).limit(-1).each do |comment| %>'+
   '<div class="row border-top padding">'+
-    '<div class="col-sm-2  height-120 hidden-xs">'+
-      '<p class="align-center"> <%= image_tag comment.user.profile_img.small.url, class: "img-thumbnail" %></p>'+
+    '<div class="col-sm-2  height-120 hidden-xs padding">'+
+      '<p class="align-center"> <%= image_tag comment.user.profile_img.smaller.url, class: "img-thumbnail" %></p>'+
     '</div>'+
     '<div class="col-sm-8  height-120">'+
       '<p class="font-12"><span class=" font-12 badge"><%=comment.user.name %> posted <%=  time_ago_in_words(comment.created_at)%> ago </span></p>'+
