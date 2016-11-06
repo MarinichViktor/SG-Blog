@@ -1,5 +1,5 @@
-<div class="comments shadow">
-  <h3 class="align-center">Add comment</h3>
+<div class="comments ">
+  <h3 class="align-center">New Comment</h3>
     <%= form_for([@post, @post.comments.build], remote: true) do |f| %>
 <div class="border">
       <%= f.text_area :text, :id=>"comment_body", class: "another form-control",placeholder: "Type yours comment", rows: "2" %>

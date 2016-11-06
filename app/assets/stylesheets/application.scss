@@ -17,6 +17,25 @@
  body { padding-top: 50px;
    padding-bottom: 70px;
   }
+  .b-radius {
+    border-radius: 5px;
+  }
+.color-white{
+  color: white;
+}
+.color-dwhite{
+  color: #a4a5a4;
+}
+.b-dwhite{
+  background-color: #dbdddd;
+}
+.shadow {
+ box-shadow: 0 0 10px rgba(0,0,0,0.5);
+ padding: 10px;
+}
+  .height-200{
+    height: 200;
+  }
   .height-120{
     height: 120px;
 

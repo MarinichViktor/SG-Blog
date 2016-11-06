@@ -13,6 +13,12 @@
       <ul class="nav navbar-nav navbar-right">
 <% if user_signed_in?%>
       <li><%=link_to 'New Post', new_post_path%></li>
+      <%if @post&&(current_user == @post.user) %>
+      <%unless @post.id.nil? %>
+      <li><%=link_to 'Edit post', edit_post_path(@post),class: " ",id: "Edit"%></li>
+      <li><%=link_to 'Delete post', post_path(@post.id),class: "", id: "Delete", method: :delete, data: {confirm: "Are you sure?"}%></li>
+     <% end %>
+     <% end %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" id="drop" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name%><span class="caret"></span></a>
           <ul class="dropdown-menu">
