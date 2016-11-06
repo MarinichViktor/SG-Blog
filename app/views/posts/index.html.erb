@@ -3,12 +3,12 @@
   <div class="row">
     <div class="top-margin ">
     <% @posts.latest_nine.each do |post| %>
-      <div class="col-sm-4 col-md-4">
+      <div class="col-sm-4 col-md-4 ">
         <div class="thumbnail black shadow">
           <img src=<%=post.image.medium.url %> alt="...">
           <div class="caption">
             <h3 class="align-center color-white"><%= title_short(post.title)%></h3>
-            <p class="color-dwhite"><%=  body_article(post.body)%></p>
+            <p class="color-dwhite inline-block"><%=  body_article(post.body)%></p>
             <p class="align-center"><a href=<%=  post_path(post)%>" class="btn btn-success " role="button">Read</a> </p>
           </div>
         </div>

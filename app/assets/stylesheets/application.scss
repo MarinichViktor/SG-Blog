@@ -17,6 +17,10 @@
  body { padding-top: 50px;
    padding-bottom: 70px;
   }
+  .index-post {
+    max-height: 350px ;
+    overflow: hidden;
+  }
   .b-radius {
     border-radius: 5px;
   }
