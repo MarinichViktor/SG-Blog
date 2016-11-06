@@ -1,16 +1,17 @@
 require "test_helper"
 
 class PostsTest < ActionDispatch::IntegrationTest
-fixtures :users
-
+fixtures :users,:posts
+include Authorization
+include Rails.application.routes.url_helpers
   def setup
     create_posts
     @post=Post.first
     @user= users(:user1)
-    log_in
+    log_in(@user)
   end
 
-  def test_home_page_with_with_five_posts
+  def test_home_page_with_with_nine_posts
     visit("/")
     assert page.has_selector?("div.thumbnail", count: 9)
   end
@@ -46,14 +47,6 @@ fixtures :users
     end
   end
 
-  def log_in
-    visit new_session_path
-    return true if page.has_content? ('You already loged in system.')
-    page.fill_in "email", :with => @user.email
-    page.fill_in "password", :with => "password"
-    page.find('input[id="login"]').click
-    assert page.has_content?(@user.name)
-  end
 
   def create_posts
     cities = ["odessa ukraine","kyiv ukraine","lviv ukraine","minsk belorussia","moscow russia","omsk russia","berlin german","london uk",'sidney',"warsaw","tbilisi georgia","madrid spain"]

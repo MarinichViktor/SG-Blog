@@ -1,51 +1,54 @@
+<div class="row ">
 
-  <div class="">
-    <div style=''>
-    <div id="map" style='width: 200px; height: 200px;'></div>
+  <div class="col-sm-7 add-margin ">
+    <% if @user.posts.last %>
+    <h3 class="align-center">Last post</h3>
+    <div class="panel panel-default ">
+      <div class="panel-body">
+        <h4>
+          <%=link_to  @user.posts.last.title ,@user.posts.last %>
+        </h4>
+      </div>
+    </div>
+    <% end %>
+    <% if @user.comments.last%>
+    <h3 class="align-center"><%=link_to 'Post with last comment', @user.comments.last.post %></h3>
+    <div class="panel panel-default ">
+      <div class="panel-body">
+        <h4>
+        <%=  @user.comments.last.text %>
+        </h4>
+      </div>
+    </div>
+    <% end %>
+    <h4 class="align-center border padding add-margin">
+      <b>Find me on map</b>
+    </h4>
+  <div class="col-sm-12    padding">
+    <div style='width: 100%;'>
+      <div id="map" style='width: 100%; height: 300px;'></div>
+    </div>
   </div>
   </div>
-  <div class="row">
+  <div class="col-sm-4 add-margin ">
+      <%= render partial: "shared/profile" %>
+  </div>
+  </div>
 
-<div class="col-sm-4">
-  <h4><%= @user.name %></h4>
-  <h6><%= @user.email %></h6>
-  <h6><%= @user.latitude %></h6>
-  <h6><%= @user.longitude %></h6>
-<%= image_tag @user.profile_img.small.url, class: "" %>
-<% if is_a_current_user?(@user) %>
-<h6><%=link_to "Edit", edit_user_path(@user) %></h6>
-<% end %>
 
 </div>
-<div class="col-sm-4">
-Posts:  <h1><%= @user.posts.count %></h1>
-<% @user.posts.each do |post|%>
-<p>
-  <h6><%=link_to post.title, post_path(post) %></h6>
-</p>
-<% end %>
-Comments:  <h1><%= @user.comments.count %></h1>
-<% @user.comments.each do |comment|%>
-<p>
-  <h6><%= comment.text %></h6>
-</p>
-<% end %>
-</div>
-</div>
+
+</li>
+</ul>
+
 
 <script type="text/javascript">
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 markers = handler.addMarkers([
-  {
-    "lat":  <%= @user.latitude %>,
-
-    "lng": <%= @user.longitude %>,
-
-    "infowindow": "<b><%= @user.name %></b>"
-  }
-]);
+{ "lat":  <%= @user.latitude %>,
+ "lng": <%= @user.longitude %>,
+ "infowindow": "<b><%= @user.name %></b>" }]);
 handler.map.centerOn([<%= @user.latitude %>, <%= @user.longitude %>]);
-
 });
 </script>

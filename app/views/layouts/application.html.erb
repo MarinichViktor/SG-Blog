@@ -12,14 +12,10 @@
 <body>
 
 
-<%= render :partial => "layouts/header"%>
+<%= render :partial => "shared/header"%>
 <% flash.each do |message_type, message| %>
   <div class="align-center alert alert-<%= message_type %>"><%= message %></div>
 <% end %>
 <%= yield %>
-
-
-<%= render :partial => "layouts/footer"%>
-
 </body>
 </html>

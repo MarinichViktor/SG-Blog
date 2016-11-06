@@ -16,9 +16,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" id="drop" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name%><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
             <li><%=link_to "Profile", user_path(current_user), id: 'Profile'%></li>
+            <li><%=link_to "Users landing", users_path, id: 'Profile'%></li>
             <li role="separator" class="divider"></li>
             <li><%=link_to "Settings", edit_user_path(current_user), id: 'Settings'%></li>
             <li role="separator" class="divider"></li>

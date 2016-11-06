@@ -10,7 +10,7 @@ require 'database_cleaner'
 
 DatabaseCleaner.strategy = :transaction
 DatabaseCleaner.clean_with(:truncation)
-Capybara.javascript_driver = :selenium
+Capybara.javascript_driver = :webkit
 Capybara.default_max_wait_time = 5
 include Rails.application.routes.url_helpers
 
@@ -44,7 +44,7 @@ end
     end
 
     def log_in (user)
-      visit new_session_path
+      visit (session/new)
       return true if page.has_content? ('You already loged in system.')
       page.fill_in "email", :with => user.email
       page.fill_in "password", :with => "password"

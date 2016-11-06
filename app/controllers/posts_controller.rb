@@ -25,6 +25,7 @@ class PostsController < ApplicationController
 
   def show
      @post = Post.find(params[:id])
+     @user = @post.user
    rescue ActiveRecord::RecordNotFound
      flash[:danger]= "Cant find post with id: #{@post.id}."
      redirect_to root_path

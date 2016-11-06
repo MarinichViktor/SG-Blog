@@ -1,36 +1,27 @@
-
-<div class="row border-top-bot">
-<div class="col-sm-3 hidden-xs profile border">
-  <div class="">
-    <div class="x date"><b class=""><%=  @post.user.name  %></b></div>
-    <div><img src=<%= @post.user.profile_img.small.url %> class="profile-image" alt="" /></div>
-    <div class="x"><b><%= link_to "Profile page" , user_path(@post.user)%>
-</b></div>
-    <div class="x back-col"><b><%= @post.user.id %></b></div>
+<div class="row border-top-bot ">
+  <div class="col-sm-4 ">
+    <%= render partial: "shared/profile" %>
 
   </div>
-</div>
+  <div class="col-sm-7  post-body border padding white">
+    <strong><h1 class="align-center add-margin">"<%= @post.title%>"</h1></strong>
 
-<div class="col-sm-8  post-body border">
-  <p class="border margin-none date">
-  <%=@post.user.name%>  posted:  <%=time_ago_in_words( @post.created_at.localtime)%> ago.
-</p>
-  <h1 class="align-center"><%= @post.title%>  </h1>
-  <%= image_tag @post.image.medium.url, class: " rightfloat-img" %>
-<p class="add-margin"><%= @post.body%></p>
-</div>
+      <p class="align-center add-margin">
+        <%= image_tag @post.image.medium.url, class: "img-thumbnail" %>
+      </p>
+    <p class="add-margin">
+      <%= @post.body%>
+    </p>
+  </div>
 </div>
 <div class="row  border-top-bot ">
-
-  <div class="col-sm-10 new-comment col-sm-offset-1 ">
+<div class="col-sm-10 new-comment col-sm-offset-1 ">
  <div class="col-sm-8 col-sm-offset-2">
    <% if user_signed_in? %>
    <%= render :partial => "./comments/new_comment"%>
    <% else%>
-
    <p class="align-center">Sign in to post yours comment</p>
    <%end %>
-
  </div>
 </div>
 </div>
@@ -38,6 +29,7 @@
 <div class=" col-sm-10 col-sm-offset-1 commentarys_container padding">
   <%= render :partial => "./comments/all_comments",  :locals => {:n=> 2 }%>
 </div>
+<div class="row">
 
   <div class="col-sm-12 title btns">
     <%=link_to 'Main page', root_path, id: "Main page", class: "btn btn-success "%>
@@ -46,3 +38,4 @@
     <%=link_to 'Delete post', post_path(@post.id),class: "btn btn-danger ", id: "Delete", method: :delete, data: {confirm: "Are you sure?"}%>
 <% end %>
   </div>
+</div>

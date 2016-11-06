@@ -2,7 +2,7 @@
 <div class="row">
 
   <div class="col-md-6 col-md-offset-3">
-    <%= render :partial => 'users_errors'%>
+    <%= render :partial => 'shared/users_errors'%>
 
   <%= form_for @user do |f|%>
     <p>
@@ -25,7 +25,7 @@
     <%= f.file_field :profile_img, :id=>"img", class: "form-control"%>
   </p>
 
-  <%= render :partial => 'password', :locals => { :f => f} %>
+  <%= render :partial => 'shared/password', :locals => { :f => f} %>
 
    <p class="align-center">
     <%= f.submit "Edit", class: "btn btn-primary ", id: "Edit" %>
