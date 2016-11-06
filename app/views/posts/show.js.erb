@@ -1,17 +1,22 @@
 var value = $(".show_all").text()
 if (value =='Show all' ){
 $(".commentarys_container").html(
-  '<h3 class="center-pos ">Comments</h3>'+
   '<% @post.comments.order(created_at: :desc).limit(-1).each do |comment| %>'+
-    '<div class="panel panel-default shadow">'+
-    '<div class="panel-body cr-time">  Created:   <%= comment.created_at %></div>'+
-    '<div class="panel-footer"> <%= comment.text %></div></div>'+
-  ' <% end %>'+
-  '<div class="center-pos"><a href="#" class="btn btn-success  show_all" data-remote="true">Hide</a>'+
-  '</div>');
+  '<div class="row border-top padding">'+
+    '<div class="col-sm-2  height-120 hidden-xs">'+
+      '<p class="align-center"> <%= image_tag comment.user.profile_img.small.url, class: "img-thumbnail" %></p>'+
+    '</div>'+
+    '<div class="col-sm-8  height-120">'+
+      '<p class="font-12"><span class=" font-12 badge"><%=comment.user.name %> posted <%=  time_ago_in_words(comment.created_at)%> ago </span></p>'+
+      '<h4 class="border-top-bot"><%=  comment.text %></h4>'+
+    '</div>'+
+  '</div>'+
+  '<% end %>'+
+  '<p class="align-center border-top-bot"><a href="#" class="btn btn-success  show_all" data-remote="true">Hide</a>'+
+  '</p>');
 }
 else {
-  $(".commentarys_container").html("<%= j render :partial => './comments/all_comments',  :locals => {:n=> 2 }%>"
+  $(".commentarys_container").html("<%= j render :partial => 'shared/all_comments',  :locals => {:n=> 2 }%>"
 );
 
 }

@@ -1,0 +1,24 @@
+<% @post.comments.order(created_at: :desc).limit(n).each do |comment| %>
+<div class="row border-top padding">
+  <div class="col-sm-2  height-120 hidden-xs">
+    <p style="text-align: center">
+      <%= image_tag comment.user.profile_img.small.url, class: "img-thumbnail" %>
+    </p>
+  </div>
+  <div class="col-sm-8  height-120">
+    <p class="font-12"><span class=" font-12 badge"><%=comment.user.name %> posted <%=  time_ago_in_words(comment.created_at)%> ago </span></p>
+    <h4 class="border-top-bot"><%=  comment.text %></h4>
+  </div>
+</div>
+<% end %>
+<div class="center-pos">
+  <% if (@post.comments.count >=3 ) %>
+<p class="align-center border-top-bot">
+  <%=link_to 'Show all', '#',  class: "btn btn-success show_all ", remote: true%>
+</p>
+  <% elsif (@post.comments.count <1) %>
+   <p>
+    No comments for this post
+   </p>
+  <%end%>
+</div>

@@ -26,9 +26,11 @@
     </span>
     Joined:
   </li>
+  <% unless request.env['PATH_INFO'] == user_path(@user) %>
   <li class="list-group-item">
     <h5 class="align-center">
       <%=link_to 'Profile', user_path(@user), class: "align-center"%>
     </h5>
   </li>
+  <% end %>
 </ul>

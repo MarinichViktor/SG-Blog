@@ -18,7 +18,7 @@
 <div class="col-sm-10 new-comment col-sm-offset-1 ">
  <div class="col-sm-8 col-sm-offset-2">
    <% if user_signed_in? %>
-   <%= render :partial => "./comments/new_comment"%>
+   <%= render :partial => "shared/new_comment"%>
    <% else%>
    <p class="align-center">Sign in to post yours comment</p>
    <%end %>
@@ -27,7 +27,7 @@
 </div>
 
 <div class=" col-sm-10 col-sm-offset-1 commentarys_container padding">
-  <%= render :partial => "./comments/all_comments",  :locals => {:n=> 2 }%>
+  <%= render :partial => "shared/all_comments",  :locals => {:n=> 2 }%>
 </div>
 <div class="row">
 
