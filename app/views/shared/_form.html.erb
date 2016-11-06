@@ -1,13 +1,20 @@
 <div class=" col-sm-8 col-sm-offset-2 paddings add-margin">
 <div class="add_paddings ">
-<% if @post.errors.any? %>
-  Something goes wrong:
+  <div class="">
+    <% if @post.errors.any? %>
+    <div class=" alert alert-danger">
   <ul>
     <% @post.errors.full_messages.each do |msg| %>
-      <li class="error"><%= msg %></li>
+      <li>
+        <%= msg %>
+      </li>
     <% end %>
   </ul>
-<% end %>
+
+      </div>
+    <% end %>
+  </div>
+
 
 
 <%= form_for @post do |f|%>
