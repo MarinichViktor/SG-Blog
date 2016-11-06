@@ -1,5 +1,11 @@
 <p style="text-align: center">
-  <%= image_tag @user.profile_img.large.url, class: "img-thumbnail" %>
+  <% if request.env['PATH_INFO'] == user_path(@user) %>
+  <%= image_tag @user.profile_img.large.url , class: "img-thumbnail" %>
+  <% else %>
+  <a href=<%= user_path(@user)%> class="thumbnail">
+  <%= image_tag @user.profile_img.large.url %>
+  <% end %>
+</a>
 </p>
 <ul class="list-group">
   <li class="list-group-item">
@@ -26,11 +32,4 @@
     </span>
     Joined:
   </li>
-  <% unless request.env['PATH_INFO'] == user_path(@user) %>
-  <li class="list-group-item">
-    <h5 class="align-center">
-      <%=link_to 'Profile', user_path(@user), class: "align-center"%>
-    </h5>
-  </li>
-  <% end %>
 </ul>

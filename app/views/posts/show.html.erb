@@ -14,13 +14,13 @@
     </p>
   </div>
 </div>
-<div class="row  border-top-bot ">
+<div class="row  border-bot ">
 <div class="col-sm-12 new-comment">
  <div class="col-sm-8 col-sm-offset-2">
    <% if user_signed_in? %>
    <%= render :partial => "shared/new_comment"%>
    <% else%>
-   <p class="align-center">Sign in to add comments</p>
+   <h4 class="align-center">Sign in to add comments</h4>
    <%end %>
  </div>
 </div>

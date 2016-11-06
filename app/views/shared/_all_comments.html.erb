@@ -13,14 +13,14 @@
   </div>
 </div>
 <% end %>
-<div class="center-pos">
+<div class="align-center add-margin " style="padding-bottom: 30px">
   <% if (@post.comments.count >=3 ) %>
-<p class="align-center border-top-bot">
+<p class="align-center border-top-bot ">
   <%=link_to 'Show all', '#',  class: "btn btn-success show_all ", remote: true%>
 </p>
   <% elsif (@post.comments.count <1) %>
-   <p>
+   <h4 class="align-center border-bot add-margin padding">
     No comments for this post
-   </p>
+  </h4>
   <%end%>
 </div>
